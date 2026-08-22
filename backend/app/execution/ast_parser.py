@@ -7,11 +7,18 @@ class ASTValidator(ast.NodeVisitor):
         self.errors = []
         
     def visit_Import(self, node):
-        self.errors.append(f"Line {node.lineno}: import statements are not allowed for security reasons.")
+        allowed = {'collections', 'math', 'itertools', 'functools', 'heapq', 'typing', 'string'}
+        for alias in node.names:
+            base_module = alias.name.split('.')[0]
+            if base_module not in allowed:
+                self.errors.append(f"Line {node.lineno}: import '{alias.name}' is not allowed for security reasons.")
         self.generic_visit(node)
         
     def visit_ImportFrom(self, node):
-        self.errors.append(f"Line {node.lineno}: import statements are not allowed for security reasons.")
+        allowed = {'collections', 'math', 'itertools', 'functools', 'heapq', 'typing', 'string'}
+        base_module = node.module.split('.')[0] if node.module else ""
+        if base_module not in allowed:
+            self.errors.append(f"Line {node.lineno}: import from '{node.module}' is not allowed for security reasons.")
         self.generic_visit(node)
         
     def visit_Call(self, node):

@@ -3,6 +3,8 @@ import { EmptyState } from './EmptyState'
 import { Array1DVisualizer } from './Array1D'
 import { Array2DVisualizer } from './Array2D'
 import { HashMapVisualizer } from './HashMap'
+import { StackVisualizer } from './StackVisualizer'
+import { QueueVisualizer } from './QueueVisualizer'
 
 import { LinkedListVisualizer } from './LinkedListVisualizer'
 import { DoublyLinkedListVisualizer } from './DoublyLinkedListVisualizer'
@@ -31,12 +33,16 @@ export function VisualizationRouter() {
       case 'trie':
         return <TreeVisualizer key={`struct-${index}`} structure={struct} />;
       case 'graph':
-        return <GraphVisualizer key={`struct-${index}`} structure={struct} />;
+        return <GraphVisualizer key={`struct-${index}`} structure={struct} simpleVariables={simpleVariables} />;
       case 'array':
         if (struct.data.length > 0 && Array.isArray(struct.data[0])) {
           return <Array2DVisualizer key={`struct-${index}`} name={Object.keys(struct.references).join(', ')} data={struct.data} />;
         }
         return <Array1DVisualizer key={`struct-${index}`} name={Object.keys(struct.references).join(', ')} data={struct.data} pointers={[]} />;
+      case 'stack':
+        return <StackVisualizer key={`struct-${index}`} name={Object.keys(struct.references).join(', ')} data={struct.data} />;
+      case 'queue':
+        return <QueueVisualizer key={`struct-${index}`} name={Object.keys(struct.references).join(', ')} data={struct.data} />;
       case 'object':
       case 'dict':
         return <HashMapVisualizer key={`struct-${index}`} name={Object.keys(struct.references).join(', ')} data={struct.data} />;
@@ -55,9 +61,9 @@ export function VisualizationRouter() {
   }
 
   return (
-    <div className="flex flex-col w-full h-full overflow-hidden">
+    <div className="flex flex-col w-full h-full overflow-hidden min-h-0">
       {/* Visualizers Area (Expanding) */}
-      <div className="flex-1 flex flex-col items-center justify-center overflow-auto p-4 relative">
+      <div className="flex-1 flex flex-col items-center justify-center overflow-hidden p-4 relative min-h-0">
         {visualizers.length > 0 ? (
           visualizers
         ) : (

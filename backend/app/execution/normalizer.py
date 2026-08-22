@@ -38,6 +38,11 @@ def serialize_state(local_vars: Dict[str, Any]) -> Tuple[Dict[str, Any], Dict[st
             memory[val_id]["values"] = [x for x in (normalize(v) for v in list(val)[:100]) if x is not SKIP]
             return {"__ref__": val_id}
             
+        elif type(val).__name__ == "deque":
+            memory[val_id] = {"__type__": "deque", "values": []}
+            memory[val_id]["values"] = [x for x in (normalize(v) for v in list(val)[:100]) if x is not SKIP]
+            return {"__ref__": val_id}
+            
         elif hasattr(val, "__dict__"):
             obj_dict = {"__type__": type(val).__name__}
             memory[val_id] = obj_dict

@@ -41,13 +41,19 @@ export function HashMapVisualizer({ name, data }: { name: string, data: any }) {
               layout
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex items-center space-x-2 bg-surface border border-border p-2 rounded shadow-sm"
+              className="flex items-center space-x-2 bg-surface border border-border p-1.5 rounded-lg shadow-sm"
             >
-              <span className="text-xs font-mono font-bold text-primary bg-primary/10 px-2 py-1 rounded">{key}</span>
-              <span className="text-muted text-xs">→</span>
-              <span className="text-sm font-bold text-text truncate max-w-[120px]" title={valStr}>
-                {valStr}
-              </span>
+              <div className="flex items-center bg-primary/10 rounded px-2 py-1 space-x-1.5 border border-primary/10">
+                <span className="text-[9px] uppercase tracking-widest font-bold text-primary/70">Key</span>
+                <span className="text-xs font-mono font-bold text-primary">{key}</span>
+              </div>
+              <span className="text-muted/50 text-xs font-bold">→</span>
+              <div className="flex items-center bg-white/5 rounded px-2 py-1 space-x-1.5 border border-white/5">
+                <span className="text-[9px] uppercase tracking-widest font-bold text-muted/70">Value</span>
+                <span className="text-sm font-mono font-bold text-text truncate max-w-[120px]" title={valStr}>
+                  {valStr}
+                </span>
+              </div>
             </motion.div>
           );
         })}

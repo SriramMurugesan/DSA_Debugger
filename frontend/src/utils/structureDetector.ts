@@ -9,7 +9,9 @@ export type VisualizationType =
   | "object"
   | "set"
   | "dict"
-  | "tuple";
+  | "tuple"
+  | "stack"
+  | "queue";
 
 export interface NormalizedStructure {
   type: VisualizationType;
@@ -26,7 +28,7 @@ function resolveMemory(refId: string, memory: Record<string, any>, visited = new
   visited.add(refId);
   const obj = memory[refId];
   
-  if (obj.__type__ === 'list' || obj.__type__ === 'tuple' || obj.__type__ === 'set') {
+  if (obj.__type__ === 'list' || obj.__type__ === 'tuple' || obj.__type__ === 'set' || obj.__type__ === 'deque') {
     return {
       __type__: obj.__type__,
       __id__: refId,
@@ -201,17 +203,65 @@ export function detectStructures(variables: Record<string, any>, memory: Record<
       Object.keys(refToVars).forEach(rId => { if (processedRefIds.has(rId)) refToVars[rId].forEach(v => allTreeRefs[v] = rId); });
       structures.push({ type: treeType as VisualizationType, id: refId, data: root, references: allTreeRefs });
     }
+    // 7.5. Detect Custom Graph Container
+    else if (
+      (typeof obj.__type__ === 'string' && obj.__type__.toLowerCase().includes('graph')) ||
+      (['graph', 'adj', 'adjacencyList', 'edges', 'vertices', 'adjList', 'adjacency', 'neighbors'].some(k => k in obj && obj[k] && obj[k].__ref__ && memory[obj[k].__ref__] && memory[obj[k].__ref__].__type__ === 'dict'))
+    ) {
+      const graphKey = ['graph', 'adj', 'adjacencyList', 'edges', 'vertices', 'adjList', 'adjacency', 'neighbors'].find(k => k in obj);
+      let adjData = {};
+      let adjRef = null;
+      
+      if (graphKey && obj[graphKey] && obj[graphKey].__ref__) {
+        adjRef = obj[graphKey].__ref__;
+        
+        const markGraphProcessed = (node: any, visited = new Set<string>()) => {
+          if (!node || typeof node !== 'object') return;
+          if (node.__id__ && !visited.has(node.__id__)) {
+            visited.add(node.__id__);
+            processedRefIds.add(node.__id__);
+            if (node.values) {
+              if (Array.isArray(node.values)) node.values.forEach((v: any) => markGraphProcessed(v, visited));
+              else Object.values(node.values).forEach((v: any) => markGraphProcessed(v, visited));
+            }
+          }
+        };
+
+        const resolved = resolveMemory(adjRef, memory);
+        adjData = resolved.values || resolved;
+        processedRefIds.add(adjRef);
+        markGraphProcessed(resolved);
+      }
+      
+      const allGraphRefs: Record<string, string> = { ...references };
+      Object.keys(refToVars).forEach(rId => { if (processedRefIds.has(rId)) refToVars[rId].forEach(v => allGraphRefs[v] = rId); });
+      if (adjRef) allGraphRefs[graphKey || 'graph'] = adjRef;
+      
+      structures.push({ type: 'graph', id: refId, data: adjData, references: allGraphRefs });
+      processedRefIds.add(refId);
+      continue;
+    }
     // 8. Detect Graph Adjacency List
     else if (obj.__type__ === 'dict' && Object.keys(obj.values).length > 0 && Object.values(obj.values).every((v: any) => v && (v.__type__ === 'list' || v.__type__ === 'set'))) {
       const resolved = resolveMemory(refId, memory);
       processedRefIds.add(refId);
       structures.push({ type: 'graph', id: refId, data: resolved.values, references });
     }
-    // 9. Detect Arrays/Lists
-    else if (obj.__type__ === 'list' || obj.__type__ === 'tuple') {
+    // 9. Detect Arrays/Lists/Stacks/Queues
+    else if (obj.__type__ === 'list' || obj.__type__ === 'tuple' || obj.__type__ === 'deque') {
       const resolved = resolveMemory(refId, memory);
       processedRefIds.add(refId);
-      structures.push({ type: 'array', id: refId, data: resolved.values, references });
+      
+      let type: VisualizationType = 'array';
+      const nameString = varNames.join(' ').toLowerCase();
+
+      if (obj.__type__ === 'deque' || nameString.includes('queue')) {
+        type = 'queue';
+      } else if (nameString.includes('stack')) {
+        type = 'stack';
+      }
+
+      structures.push({ type, id: refId, data: resolved.values, references });
     }
     // 10. Detect Dictionaries/Sets/Objects
     else {
