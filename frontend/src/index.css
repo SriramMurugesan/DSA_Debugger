@@ -56,4 +56,11 @@
   .scrollbar-thin::-webkit-scrollbar { width: 4px; height: 4px; }
   .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
   .scrollbar-thin::-webkit-scrollbar-thumb { background: #2A2824; border-radius: 2px; }
+
+  /* Monaco Editor Active Line Box Highlight */
+  .monaco-active-line {
+    border: 1px solid var(--color-primary);
+    border-left: 4px solid var(--color-primary);
+    background: transparent !important;
+  }
 }

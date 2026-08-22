@@ -26,7 +26,7 @@ export function CodeEditor() {
             range: new monaco.Range(line, 1, line, 1),
             options: {
               isWholeLine: true,
-              className: 'bg-primary/20 border-l-4 border-primary',
+              className: 'monaco-active-line',
             }
           }
         ]

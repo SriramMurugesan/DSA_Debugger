@@ -93,15 +93,24 @@ export function detectStructures(variables: Record<string, any>, memory: Record<
     return nodes;
   };
 
-  // Helper to get connected nodes for Binary Tree
-  const traverseBinaryTree = (startRef: string) => {
-    const root = resolveMemory(startRef, memory); // Deep resolve for trees is usually fine as visualizer expects it
+  // Helper to get connected nodes for Binary Tree/General Tree/Trie
+  const traverseTree = (startRef: string) => {
+    const root = resolveMemory(startRef, memory); // Deep resolve for trees
     // Mark all tree nodes as processed
     const markProcessed = (node: any) => {
-      if (!node) return;
+      if (!node || typeof node !== 'object') return;
       if (node.__id__) processedRefIds.add(node.__id__);
       if (node.left) markProcessed(node.left);
       if (node.right) markProcessed(node.right);
+      
+      if (node.children) {
+        const children = node.children.values || node.children;
+        if (Array.isArray(children)) {
+          children.forEach(markProcessed);
+        } else if (typeof children === 'object') {
+          Object.values(children).forEach(markProcessed);
+        }
+      }
     };
     markProcessed(root);
     return root;
@@ -109,7 +118,7 @@ export function detectStructures(variables: Record<string, any>, memory: Record<
 
   // 2. Identify structures from the memory pool based on variables
   for (const [refId, varNames] of Object.entries(refToVars)) {
-    if (processedRefIds.has(refId)) continue; // Already part of another structure (e.g. curr pointer in linked list)
+    if (processedRefIds.has(refId)) continue; 
 
     const obj = memory[refId];
     if (!obj) continue;
@@ -141,16 +150,26 @@ export function detectStructures(variables: Record<string, any>, memory: Record<
       processedRefIds.add(refId);
       continue;
     }
-    // 3. Detect Binary Tree Container
-    if ('root' in obj && (
-      (obj.root && obj.root.__ref__ && memory[obj.root.__ref__] && ('left' in memory[obj.root.__ref__] || 'right' in memory[obj.root.__ref__])) ||
-      (obj.root === null) // If it has 'root' but it's null, assume Binary Tree
-    )) {
-      const root = obj.root && obj.root.__ref__ ? traverseBinaryTree(obj.root.__ref__) : null;
+    // 3. Detect Tree Container (Binary, General, Trie)
+    if ('root' in obj) {
+      let treeType = 'binary-tree';
+      const rootNode = obj.root && obj.root.__ref__ ? memory[obj.root.__ref__] : null;
+      if (rootNode) {
+        if ('children' in rootNode) {
+          const childrenObj = rootNode.children && rootNode.children.__ref__ ? memory[rootNode.children.__ref__] : null;
+          if (childrenObj && childrenObj.__type__ === 'dict') {
+            treeType = 'trie';
+          }
+        }
+      } else if (typeof obj.__type__ === 'string' && obj.__type__.toLowerCase().includes('trie')) {
+        treeType = 'trie';
+      }
+
+      const root = obj.root && obj.root.__ref__ ? traverseTree(obj.root.__ref__) : null;
       const allTreeRefs: Record<string, string> = { ...references };
       Object.keys(refToVars).forEach(rId => { if (processedRefIds.has(rId)) refToVars[rId].forEach(v => allTreeRefs[v] = rId); });
       if (obj.root && obj.root.__ref__) allTreeRefs['root'] = obj.root.__ref__;
-      structures.push({ type: 'binary-tree', id: refId, data: root, references: allTreeRefs });
+      structures.push({ type: treeType as VisualizationType, id: refId, data: root, references: allTreeRefs });
       processedRefIds.add(refId);
       continue;
     }
@@ -167,19 +186,20 @@ export function detectStructures(variables: Record<string, any>, memory: Record<
       nodes.forEach(n => { if (refToVars[n.id]) refToVars[n.id].forEach(v => references[v] = n.id); });
       structures.push({ type: 'linked-list', id: refId, data: nodes, references });
     }
-    // 6. Detect Binary Tree Node
-    else if ('left' in obj || 'right' in obj) {
-      const root = traverseBinaryTree(refId);
+    // 6. Detect Tree Node (Binary, General, Trie)
+    else if ('left' in obj || 'right' in obj || 'children' in obj) {
+      let treeType = 'binary-tree';
+      if ('children' in obj) {
+        const childrenObj = obj.children && obj.children.__ref__ ? memory[obj.children.__ref__] : null;
+        if (childrenObj && childrenObj.__type__ === 'dict') {
+          treeType = 'trie';
+        }
+      }
+      
+      const root = traverseTree(refId);
       const allTreeRefs: Record<string, string> = { ...references };
       Object.keys(refToVars).forEach(rId => { if (processedRefIds.has(rId)) refToVars[rId].forEach(v => allTreeRefs[v] = rId); });
-      structures.push({ type: 'binary-tree', id: refId, data: root, references: allTreeRefs });
-    }
-    // 7. Detect Trie Node
-    else if ('children' in obj && ('is_end' in obj || 'is_word' in obj || 'end' in obj)) {
-      const root = traverseBinaryTree(refId);
-      const allTreeRefs: Record<string, string> = { ...references };
-      Object.keys(refToVars).forEach(rId => { if (processedRefIds.has(rId)) refToVars[rId].forEach(v => allTreeRefs[v] = rId); });
-      structures.push({ type: 'trie', id: refId, data: root, references: allTreeRefs });
+      structures.push({ type: treeType as VisualizationType, id: refId, data: root, references: allTreeRefs });
     }
     // 8. Detect Graph Adjacency List
     else if (obj.__type__ === 'dict' && Object.keys(obj.values).length > 0 && Object.values(obj.values).every((v: any) => v && (v.__type__ === 'list' || v.__type__ === 'set'))) {
