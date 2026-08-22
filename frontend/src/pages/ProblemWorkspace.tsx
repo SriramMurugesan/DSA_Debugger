@@ -12,7 +12,7 @@ import { Loader2, CheckCircle2 } from 'lucide-react'
 export function ProblemWorkspace() {
   const { slug } = useParams()
   const queryClient = useQueryClient()
-  const { status, code, setCode } = useExecutionStore()
+  const { status, code, setCode, clearExecution } = useExecutionStore()
   const isVisualizing = status !== 'idle'
 
   const { data: problem, isLoading, error } = useQuery({
@@ -25,10 +25,12 @@ export function ProblemWorkspace() {
   })
 
   useEffect(() => {
-    if (problem && problem.starterCode && problem.starterCode.python && !code) {
-      setCode(problem.starterCode.python)
+    // When a new problem is loaded, reset the visualizer and load its starter code
+    if (problem && problem.starterCode && problem.starterCode.python) {
+      clearExecution();
+      setCode(problem.starterCode.python);
     }
-  }, [problem, setCode])
+  }, [slug, problem?.id, setCode, clearExecution])
 
   const submitMutation = useMutation({
     mutationFn: async (status: string) => {
@@ -122,10 +124,10 @@ export function ProblemWorkspace() {
           <div key={i} className="bg-surface border border-border rounded p-3 text-xs font-mono group hover:border-primary/50 transition-colors">
             <div className="text-muted mb-1 text-[10px] font-bold uppercase tracking-wider group-hover:text-primary transition-colors">Case {i + 1}</div>
             <div className="mb-1 break-all">
-              <span className="text-muted">Input:</span> <span className="text-text">{tc.input}</span>
+              <span className="text-muted">Input:</span> <span className="text-text">{typeof tc.input === 'object' ? JSON.stringify(tc.input) : tc.input}</span>
             </div>
             <div className="break-all">
-              <span className="text-muted">Expected:</span> <span className="text-success">{tc.expectedOutput}</span>
+              <span className="text-muted">Expected:</span> <span className="text-success">{typeof tc.expectedOutput === 'object' ? JSON.stringify(tc.expectedOutput) : tc.expectedOutput}</span>
             </div>
           </div>
         ))}

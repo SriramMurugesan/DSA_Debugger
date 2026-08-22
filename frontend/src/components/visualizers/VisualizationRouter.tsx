@@ -34,11 +34,17 @@ export function VisualizationRouter() {
         return <TreeVisualizer key={`struct-${index}`} structure={struct} />;
       case 'graph':
         return <GraphVisualizer key={`struct-${index}`} structure={struct} simpleVariables={simpleVariables} />;
-      case 'array':
+      case 'array': {
+        // Extract integer variables to serve as pointers
+        const pointers = Object.entries(simpleVariables)
+          .filter(([_, val]) => typeof val === 'number')
+          .map(([name, value]) => ({ name, value }));
+
         if (struct.data.length > 0 && Array.isArray(struct.data[0])) {
           return <Array2DVisualizer key={`struct-${index}`} name={Object.keys(struct.references).join(', ')} data={struct.data} />;
         }
-        return <Array1DVisualizer key={`struct-${index}`} name={Object.keys(struct.references).join(', ')} data={struct.data} pointers={[]} />;
+        return <Array1DVisualizer key={`struct-${index}`} name={Object.keys(struct.references).join(', ')} data={struct.data} pointers={pointers} />;
+      }
       case 'stack':
         return <StackVisualizer key={`struct-${index}`} name={Object.keys(struct.references).join(', ')} data={struct.data} />;
       case 'queue':

@@ -1,0 +1,3058 @@
+[
+    {
+        "id": "arrays_two_sum",
+        "slug": "arrays-two-sum",
+        "title": "Two Sum",
+        "difficulty": "easy",
+        "category_id": "arrays-hashing",
+        "description": "Given an array of integers nums and a target, return indices of the two numbers that add up to target.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [2,7,11,15], target = 9",
+                "output": "[0, 1]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        2,
+                        7,
+                        11,
+                        15
+                    ],
+                    "target": 9
+                },
+                "expectedOutput": [
+                    0,
+                    1
+                ]
+            }
+        ],
+        "starter_code_python": "def two_sum(nums, target):\n    pass",
+        "visualization_type": "array-hashmap",
+        "display_order": 1
+    },
+    {
+        "id": "arrays_contains_duplicate",
+        "slug": "arrays-contains-duplicate",
+        "title": "Contains Duplicate",
+        "difficulty": "easy",
+        "category_id": "arrays-hashing",
+        "description": "Given an integer array nums, return true if any value appears at least twice in the array.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [1,2,3,1]",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        1,
+                        2,
+                        3,
+                        1
+                    ]
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def contains_duplicate(nums):\n    pass",
+        "visualization_type": "array-hashmap",
+        "display_order": 2
+    },
+    {
+        "id": "arrays_valid_anagram",
+        "slug": "arrays-valid-anagram",
+        "title": "Valid Anagram",
+        "difficulty": "easy",
+        "category_id": "arrays-hashing",
+        "description": "Given two strings s and t, return true if t is an anagram of s, and false otherwise.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "s = 'anagram', t = 'nagaram'",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "s": "anagram",
+                    "t": "nagaram"
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def is_anagram(s, t):\n    pass",
+        "visualization_type": "hashmap",
+        "display_order": 3
+    },
+    {
+        "id": "arrays_group_anagrams",
+        "slug": "arrays-group-anagrams",
+        "title": "Group Anagrams",
+        "difficulty": "medium",
+        "category_id": "arrays-hashing",
+        "description": "Given an array of strings strs, group the anagrams together. You can return the answer in any order.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "strs = ['eat','tea','tan','ate','nat','bat']",
+                "output": "[['bat'],['nat','tan'],['ate','eat','tea']]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "strs": [
+                        "eat",
+                        "tea",
+                        "tan",
+                        "ate",
+                        "nat",
+                        "bat"
+                    ]
+                },
+                "expectedOutput": [
+                    [
+                        "bat"
+                    ],
+                    [
+                        "nat",
+                        "tan"
+                    ],
+                    [
+                        "ate",
+                        "eat",
+                        "tea"
+                    ]
+                ]
+            }
+        ],
+        "starter_code_python": "def group_anagrams(strs):\n    pass",
+        "visualization_type": "array-hashmap",
+        "display_order": 4
+    },
+    {
+        "id": "arrays_top_k_frequent",
+        "slug": "arrays-top-k-frequent",
+        "title": "Top K Frequent Elements",
+        "difficulty": "medium",
+        "category_id": "arrays-hashing",
+        "description": "Given an integer array nums and an integer k, return the k most frequent elements.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [1,1,1,2,2,3], k = 2",
+                "output": "[1, 2]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        1,
+                        1,
+                        1,
+                        2,
+                        2,
+                        3
+                    ],
+                    "k": 2
+                },
+                "expectedOutput": [
+                    1,
+                    2
+                ]
+            }
+        ],
+        "starter_code_python": "def top_k_frequent(nums, k):\n    pass",
+        "visualization_type": "frequency-map",
+        "display_order": 5
+    },
+    {
+        "id": "tp_valid_palindrome",
+        "slug": "tp-valid-palindrome",
+        "title": "Valid Palindrome",
+        "difficulty": "easy",
+        "category_id": "two-pointers",
+        "description": "A phrase is a palindrome if it reads the same forward and backward.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "s = 'A man, a plan, a canal: Panama'",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "s": "A man, a plan, a canal: Panama"
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def is_palindrome(s):\n    pass",
+        "visualization_type": "two-pointers",
+        "display_order": 1
+    },
+    {
+        "id": "tp_two_sum_ii",
+        "slug": "tp-two-sum-ii",
+        "title": "Two Sum II",
+        "difficulty": "medium",
+        "category_id": "two-pointers",
+        "description": "Given a 1-indexed array of integers sorted in non-decreasing order, find two numbers that add up to a target.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "numbers = [2,7,11,15], target = 9",
+                "output": "[1, 2]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "numbers": [
+                        2,
+                        7,
+                        11,
+                        15
+                    ],
+                    "target": 9
+                },
+                "expectedOutput": [
+                    1,
+                    2
+                ]
+            }
+        ],
+        "starter_code_python": "def two_sum_ii(numbers, target):\n    pass",
+        "visualization_type": "two-pointers",
+        "display_order": 2
+    },
+    {
+        "id": "tp_remove_duplicates",
+        "slug": "tp-remove-duplicates",
+        "title": "Remove Duplicates",
+        "difficulty": "easy",
+        "category_id": "two-pointers",
+        "description": "Remove duplicates from a sorted array in-place such that each element appears only once.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [1,1,2]",
+                "output": "2, nums=[1,2]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        1,
+                        1,
+                        2
+                    ]
+                },
+                "expectedOutput": 2
+            }
+        ],
+        "starter_code_python": "def remove_duplicates(nums):\n    pass",
+        "visualization_type": "two-pointers",
+        "display_order": 3
+    },
+    {
+        "id": "tp_container_most_water",
+        "slug": "tp-container-most-water",
+        "title": "Container With Most Water",
+        "difficulty": "medium",
+        "category_id": "two-pointers",
+        "description": "Given an array of heights, find two lines that together with the x-axis form a container that holds the most water.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "height = [1,8,6,2,5,4,8,3,7]",
+                "output": "49",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "height": [
+                        1,
+                        8,
+                        6,
+                        2,
+                        5,
+                        4,
+                        8,
+                        3,
+                        7
+                    ]
+                },
+                "expectedOutput": 49
+            }
+        ],
+        "starter_code_python": "def max_area(height):\n    pass",
+        "visualization_type": "two-pointers",
+        "display_order": 4
+    },
+    {
+        "id": "tp_three_sum",
+        "slug": "tp-three-sum",
+        "title": "Three Sum",
+        "difficulty": "medium",
+        "category_id": "two-pointers",
+        "description": "Given an array nums, return all triplets [nums[i], nums[j], nums[k]] such that they add up to 0.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [-1,0,1,2,-1,-4]",
+                "output": "[[-1,-1,2],[-1,0,1]]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        -1,
+                        0,
+                        1,
+                        2,
+                        -1,
+                        -4
+                    ]
+                },
+                "expectedOutput": [
+                    [
+                        -1,
+                        -1,
+                        2
+                    ],
+                    [
+                        -1,
+                        0,
+                        1
+                    ]
+                ]
+            }
+        ],
+        "starter_code_python": "def three_sum(nums):\n    pass",
+        "visualization_type": "two-pointers",
+        "display_order": 5
+    },
+    {
+        "id": "sw_max_avg_subarray",
+        "slug": "sw-max-avg-subarray",
+        "title": "Max Average Subarray",
+        "difficulty": "easy",
+        "category_id": "sliding-window",
+        "description": "Find a contiguous subarray of length k that has the maximum average value.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [1,12,-5,-6,50,3], k = 4",
+                "output": "12.75",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        1,
+                        12,
+                        -5,
+                        -6,
+                        50,
+                        3
+                    ],
+                    "k": 4
+                },
+                "expectedOutput": 12.75
+            }
+        ],
+        "starter_code_python": "def find_max_average(nums, k):\n    pass",
+        "visualization_type": "window",
+        "display_order": 1
+    },
+    {
+        "id": "sw_longest_substring",
+        "slug": "sw-longest-substring",
+        "title": "Longest Substring No Repeat",
+        "difficulty": "medium",
+        "category_id": "sliding-window",
+        "description": "Find the length of the longest substring without repeating characters.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "s = 'abcabcbb'",
+                "output": "3",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "s": "abcabcbb"
+                },
+                "expectedOutput": 3
+            }
+        ],
+        "starter_code_python": "def length_of_longest_substring(s):\n    pass",
+        "visualization_type": "window",
+        "display_order": 2
+    },
+    {
+        "id": "sw_min_size_subarray",
+        "slug": "sw-min-size-subarray",
+        "title": "Minimum Size Subarray Sum",
+        "difficulty": "medium",
+        "category_id": "sliding-window",
+        "description": "Return the minimal length of a subarray whose sum is greater than or equal to target.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "target = 7, nums = [2,3,1,2,4,3]",
+                "output": "2",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "target": 7,
+                    "nums": [
+                        2,
+                        3,
+                        1,
+                        2,
+                        4,
+                        3
+                    ]
+                },
+                "expectedOutput": 2
+            }
+        ],
+        "starter_code_python": "def min_sub_array_len(target, nums):\n    pass",
+        "visualization_type": "window",
+        "display_order": 3
+    },
+    {
+        "id": "sw_permutation_string",
+        "slug": "sw-permutation-string",
+        "title": "Permutation in String",
+        "difficulty": "medium",
+        "category_id": "sliding-window",
+        "description": "Return true if s2 contains a permutation of s1.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "s1 = 'ab', s2 = 'eidbaooo'",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "s1": "ab",
+                    "s2": "eidbaooo"
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def check_inclusion(s1, s2):\n    pass",
+        "visualization_type": "window",
+        "display_order": 4
+    },
+    {
+        "id": "sw_min_window",
+        "slug": "sw-min-window",
+        "title": "Minimum Window Substring",
+        "difficulty": "hard",
+        "category_id": "sliding-window",
+        "description": "Given strings s and t, return the minimum window substring of s such that every character in t is included.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "s = 'ADOBECODEBANC', t = 'ABC'",
+                "output": "'BANC'",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "s": "ADOBECODEBANC",
+                    "t": "ABC"
+                },
+                "expectedOutput": "BANC"
+            }
+        ],
+        "starter_code_python": "def min_window(s, t):\n    pass",
+        "visualization_type": "window",
+        "display_order": 5
+    },
+    {
+        "id": "stk_valid_parentheses",
+        "slug": "stk-valid-parentheses",
+        "title": "Valid Parentheses",
+        "difficulty": "easy",
+        "category_id": "stack",
+        "description": "Given a string containing brackets, determine if the input string is valid.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "s = '()[]{}'",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "s": "()[]{}"
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def is_valid(s):\n    pass",
+        "visualization_type": "stack",
+        "display_order": 1
+    },
+    {
+        "id": "stk_min_stack",
+        "slug": "stk-min-stack",
+        "title": "Min Stack",
+        "difficulty": "medium",
+        "category_id": "stack",
+        "description": "Design a stack that supports push, pop, top, and retrieving the minimum element.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "Push 1, Push 2",
+                "output": "None",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "ops": [
+                        "push"
+                    ]
+                },
+                "expectedOutput": null
+            }
+        ],
+        "starter_code_python": "class MinStack:\n    def __init__(self):\n        pass",
+        "visualization_type": "stack",
+        "display_order": 2
+    },
+    {
+        "id": "stk_eval_rpn",
+        "slug": "stk-eval-rpn",
+        "title": "Evaluate Reverse Polish Notation",
+        "difficulty": "medium",
+        "category_id": "stack",
+        "description": "Evaluate the value of an arithmetic expression in RPN.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "tokens = ['2','1','+','3','*']",
+                "output": "9",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "tokens": [
+                        "2",
+                        "1",
+                        "+",
+                        "3",
+                        "*"
+                    ]
+                },
+                "expectedOutput": 9
+            }
+        ],
+        "starter_code_python": "def eval_rpn(tokens):\n    pass",
+        "visualization_type": "stack",
+        "display_order": 3
+    },
+    {
+        "id": "stk_daily_temp",
+        "slug": "stk-daily-temp",
+        "title": "Daily Temperatures",
+        "difficulty": "medium",
+        "category_id": "stack",
+        "description": "Return an array answering how many days you have to wait after the ith day to get a warmer temperature.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "temp = [73,74,75,71,69,72,76,73]",
+                "output": "[1,1,4,2,1,1,0,0]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "temperatures": [
+                        73,
+                        74,
+                        75,
+                        71,
+                        69,
+                        72,
+                        76,
+                        73
+                    ]
+                },
+                "expectedOutput": [
+                    1,
+                    1,
+                    4,
+                    2,
+                    1,
+                    1,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "starter_code_python": "def daily_temperatures(temperatures):\n    pass",
+        "visualization_type": "stack",
+        "display_order": 4
+    },
+    {
+        "id": "stk_largest_rect",
+        "slug": "stk-largest-rect",
+        "title": "Largest Rectangle in Histogram",
+        "difficulty": "hard",
+        "category_id": "stack",
+        "description": "Given an array of integers representing the histogram's bar height, return the area of the largest rectangle.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "heights = [2,1,5,6,2,3]",
+                "output": "10",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "heights": [
+                        2,
+                        1,
+                        5,
+                        6,
+                        2,
+                        3
+                    ]
+                },
+                "expectedOutput": 10
+            }
+        ],
+        "starter_code_python": "def largest_rectangle_area(heights):\n    pass",
+        "visualization_type": "stack",
+        "display_order": 5
+    },
+    {
+        "id": "bs_binary_search",
+        "slug": "bs-binary-search",
+        "title": "Binary Search",
+        "difficulty": "easy",
+        "category_id": "binary-search",
+        "description": "Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [-1,0,3,5,9,12], target = 9",
+                "output": "4",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        -1,
+                        0,
+                        3,
+                        5,
+                        9,
+                        12
+                    ],
+                    "target": 9
+                },
+                "expectedOutput": 4
+            }
+        ],
+        "starter_code_python": "def search(nums, target):\n    pass",
+        "visualization_type": "array",
+        "display_order": 1
+    },
+    {
+        "id": "bs_search_insert",
+        "slug": "bs-search-insert",
+        "title": "Search Insert Position",
+        "difficulty": "easy",
+        "category_id": "binary-search",
+        "description": "Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [1,3,5,6], target = 5",
+                "output": "2",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        1,
+                        3,
+                        5,
+                        6
+                    ],
+                    "target": 5
+                },
+                "expectedOutput": 2
+            }
+        ],
+        "starter_code_python": "def search_insert(nums, target):\n    pass",
+        "visualization_type": "array",
+        "display_order": 2
+    },
+    {
+        "id": "bs_first_bad",
+        "slug": "bs-first-bad",
+        "title": "First Bad Version",
+        "difficulty": "easy",
+        "category_id": "binary-search",
+        "description": "You have n versions [1, 2, ..., n] and you want to find out the first bad one.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "n = 5, bad = 4",
+                "output": "4",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "n": 5
+                },
+                "expectedOutput": 4
+            }
+        ],
+        "starter_code_python": "def first_bad_version(n):\n    pass",
+        "visualization_type": "array",
+        "display_order": 3
+    },
+    {
+        "id": "bs_search_rotated",
+        "slug": "bs-search-rotated",
+        "title": "Search in Rotated Sorted Array",
+        "difficulty": "medium",
+        "category_id": "binary-search",
+        "description": "Search for a target value in a rotated sorted array.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [4,5,6,7,0,1,2], target = 0",
+                "output": "4",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        4,
+                        5,
+                        6,
+                        7,
+                        0,
+                        1,
+                        2
+                    ],
+                    "target": 0
+                },
+                "expectedOutput": 4
+            }
+        ],
+        "starter_code_python": "def search(nums, target):\n    pass",
+        "visualization_type": "array",
+        "display_order": 4
+    },
+    {
+        "id": "bs_find_min",
+        "slug": "bs-find-min",
+        "title": "Find Minimum in Rotated Sorted Array",
+        "difficulty": "medium",
+        "category_id": "binary-search",
+        "description": "Find the minimum element in a rotated sorted array.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [3,4,5,1,2]",
+                "output": "1",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        3,
+                        4,
+                        5,
+                        1,
+                        2
+                    ]
+                },
+                "expectedOutput": 1
+            }
+        ],
+        "starter_code_python": "def find_min(nums):\n    pass",
+        "visualization_type": "array",
+        "display_order": 5
+    },
+    {
+        "id": "ll_reverse",
+        "slug": "ll-reverse",
+        "title": "Reverse Linked List",
+        "difficulty": "easy",
+        "category_id": "linked-list",
+        "description": "Reverse a singly linked list.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "head = [1,2,3,4,5]",
+                "output": "[5,4,3,2,1]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "head": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ]
+                },
+                "expectedOutput": [
+                    5,
+                    4,
+                    3,
+                    2,
+                    1
+                ]
+            }
+        ],
+        "starter_code_python": "def reverse_list(head):\n    pass",
+        "visualization_type": "linked-list",
+        "display_order": 1
+    },
+    {
+        "id": "ll_merge",
+        "slug": "ll-merge",
+        "title": "Merge Two Sorted Lists",
+        "difficulty": "easy",
+        "category_id": "linked-list",
+        "description": "Merge two sorted linked lists and return it as a sorted list.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "list1 = [1,2,4], list2 = [1,3,4]",
+                "output": "[1,1,2,3,4,4]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "list1": [
+                        1,
+                        2,
+                        4
+                    ],
+                    "list2": [
+                        1,
+                        3,
+                        4
+                    ]
+                },
+                "expectedOutput": [
+                    1,
+                    1,
+                    2,
+                    3,
+                    4,
+                    4
+                ]
+            }
+        ],
+        "starter_code_python": "def merge_two_lists(list1, list2):\n    pass",
+        "visualization_type": "linked-list",
+        "display_order": 2
+    },
+    {
+        "id": "ll_cycle",
+        "slug": "ll-cycle",
+        "title": "Linked List Cycle",
+        "difficulty": "easy",
+        "category_id": "linked-list",
+        "description": "Given head, the head of a linked list, determine if the linked list has a cycle in it.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "head = [3,2,0,-4], pos = 1",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "head": [
+                        3,
+                        2,
+                        0,
+                        -4
+                    ]
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def has_cycle(head):\n    pass",
+        "visualization_type": "linked-list",
+        "display_order": 3
+    },
+    {
+        "id": "ll_remove_nth",
+        "slug": "ll-remove-nth",
+        "title": "Remove Nth Node From End",
+        "difficulty": "medium",
+        "category_id": "linked-list",
+        "description": "Given the head of a linked list, remove the nth node from the end of the list and return its head.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "head = [1,2,3,4,5], n = 2",
+                "output": "[1,2,3,5]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "head": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ],
+                    "n": 2
+                },
+                "expectedOutput": [
+                    1,
+                    2,
+                    3,
+                    5
+                ]
+            }
+        ],
+        "starter_code_python": "def remove_nth_from_end(head, n):\n    pass",
+        "visualization_type": "linked-list",
+        "display_order": 4
+    },
+    {
+        "id": "ll_reorder",
+        "slug": "ll-reorder",
+        "title": "Reorder Linked List",
+        "difficulty": "medium",
+        "category_id": "linked-list",
+        "description": "You are given the head of a singly linked-list. Reorder the list in-place.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "head = [1,2,3,4]",
+                "output": "[1,4,2,3]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "head": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ]
+                },
+                "expectedOutput": [
+                    1,
+                    4,
+                    2,
+                    3
+                ]
+            }
+        ],
+        "starter_code_python": "def reorder_list(head):\n    pass",
+        "visualization_type": "linked-list",
+        "display_order": 5
+    },
+    {
+        "id": "tree_max_depth",
+        "slug": "tree-max-depth",
+        "title": "Maximum Depth of Binary Tree",
+        "difficulty": "easy",
+        "category_id": "trees",
+        "description": "Given the root of a binary tree, return its maximum depth.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "root = [3,9,20,None,None,15,7]",
+                "output": "3",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "root": [
+                        3,
+                        9,
+                        20,
+                        null,
+                        null,
+                        15,
+                        7
+                    ]
+                },
+                "expectedOutput": 3
+            }
+        ],
+        "starter_code_python": "def max_depth(root):\n    pass",
+        "visualization_type": "binary-tree",
+        "display_order": 1
+    },
+    {
+        "id": "tree_same",
+        "slug": "tree-same",
+        "title": "Same Tree",
+        "difficulty": "easy",
+        "category_id": "trees",
+        "description": "Given the roots of two binary trees p and q, write a function to check if they are the same or not.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "p = [1,2,3], q = [1,2,3]",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "p": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "q": [
+                        1,
+                        2,
+                        3
+                    ]
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def is_same_tree(p, q):\n    pass",
+        "visualization_type": "binary-tree",
+        "display_order": 2
+    },
+    {
+        "id": "tree_invert",
+        "slug": "tree-invert",
+        "title": "Invert Binary Tree",
+        "difficulty": "easy",
+        "category_id": "trees",
+        "description": "Given the root of a binary tree, invert the tree, and return its root.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "root = [4,2,7,1,3,6,9]",
+                "output": "[4,7,2,9,6,3,1]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "root": [
+                        4,
+                        2,
+                        7,
+                        1,
+                        3,
+                        6,
+                        9
+                    ]
+                },
+                "expectedOutput": [
+                    4,
+                    7,
+                    2,
+                    9,
+                    6,
+                    3,
+                    1
+                ]
+            }
+        ],
+        "starter_code_python": "def invert_tree(root):\n    pass",
+        "visualization_type": "binary-tree",
+        "display_order": 3
+    },
+    {
+        "id": "tree_level_order",
+        "slug": "tree-level-order",
+        "title": "Level Order Traversal",
+        "difficulty": "medium",
+        "category_id": "trees",
+        "description": "Given the root of a binary tree, return the level order traversal of its nodes' values.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "root = [3,9,20,None,None,15,7]",
+                "output": "[[3],[9,20],[15,7]]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "root": [
+                        3,
+                        9,
+                        20,
+                        null,
+                        null,
+                        15,
+                        7
+                    ]
+                },
+                "expectedOutput": [
+                    [
+                        3
+                    ],
+                    [
+                        9,
+                        20
+                    ],
+                    [
+                        15,
+                        7
+                    ]
+                ]
+            }
+        ],
+        "starter_code_python": "def level_order(root):\n    pass",
+        "visualization_type": "binary-tree",
+        "display_order": 4
+    },
+    {
+        "id": "tree_valid_bst",
+        "slug": "tree-valid-bst",
+        "title": "Validate Binary Search Tree",
+        "difficulty": "medium",
+        "category_id": "trees",
+        "description": "Given the root of a binary tree, determine if it is a valid binary search tree (BST).",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "root = [2,1,3]",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "root": [
+                        2,
+                        1,
+                        3
+                    ]
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def is_valid_bst(root):\n    pass",
+        "visualization_type": "binary-tree",
+        "display_order": 5
+    },
+    {
+        "id": "trie_implement",
+        "slug": "trie-implement",
+        "title": "Implement Trie",
+        "difficulty": "medium",
+        "category_id": "trie",
+        "description": "A trie (prefix tree) is a tree data structure used to efficiently store and retrieve keys in a dataset of strings.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "insert('apple'), search('apple')",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "ops": []
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "class Trie:\n    def __init__(self):\n        pass",
+        "visualization_type": "trie",
+        "display_order": 1
+    },
+    {
+        "id": "trie_search_word",
+        "slug": "trie-search-word",
+        "title": "Search Word",
+        "difficulty": "medium",
+        "category_id": "trie",
+        "description": "Implement a search function for a Trie.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "word = 'hello'",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "word": "hello"
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def search(word):\n    pass",
+        "visualization_type": "trie",
+        "display_order": 2
+    },
+    {
+        "id": "trie_starts_with",
+        "slug": "trie-starts-with",
+        "title": "Starts With Prefix",
+        "difficulty": "medium",
+        "category_id": "trie",
+        "description": "Returns true if there is a previously inserted string word that has the prefix prefix.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "prefix = 'app'",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "prefix": "app"
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def starts_with(prefix):\n    pass",
+        "visualization_type": "trie",
+        "display_order": 3
+    },
+    {
+        "id": "trie_word_dict",
+        "slug": "trie-word-dict",
+        "title": "Word Dictionary Wildcard",
+        "difficulty": "medium",
+        "category_id": "trie",
+        "description": "Design a data structure that supports adding new words and finding if a string matches any previously added string, where '.' can match any letter.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "addWord('bad'), search('b..')",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "ops": []
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "class WordDictionary:\n    pass",
+        "visualization_type": "trie",
+        "display_order": 4
+    },
+    {
+        "id": "trie_word_search_ii",
+        "slug": "trie-word-search-ii",
+        "title": "Word Search II",
+        "difficulty": "hard",
+        "category_id": "trie",
+        "description": "Given an m x n board of characters and a list of strings words, return all words on the board.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "board=[...], words=['oath']",
+                "output": "['oath']",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "board": [
+                        [
+                            "o",
+                            "a"
+                        ],
+                        [
+                            "t",
+                            "h"
+                        ]
+                    ],
+                    "words": [
+                        "oath"
+                    ]
+                },
+                "expectedOutput": [
+                    "oath"
+                ]
+            }
+        ],
+        "starter_code_python": "def find_words(board, words):\n    pass",
+        "visualization_type": "trie",
+        "display_order": 5
+    },
+    {
+        "id": "bt_subsets",
+        "slug": "bt-subsets",
+        "title": "Subsets",
+        "difficulty": "medium",
+        "category_id": "backtracking",
+        "description": "Given an integer array nums of unique elements, return all possible subsets.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [1,2,3]",
+                "output": "[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        1,
+                        2,
+                        3
+                    ]
+                },
+                "expectedOutput": [
+                    [],
+                    [
+                        1
+                    ],
+                    [
+                        2
+                    ],
+                    [
+                        1,
+                        2
+                    ],
+                    [
+                        3
+                    ],
+                    [
+                        1,
+                        3
+                    ],
+                    [
+                        2,
+                        3
+                    ],
+                    [
+                        1,
+                        2,
+                        3
+                    ]
+                ]
+            }
+        ],
+        "starter_code_python": "def subsets(nums):\n    pass",
+        "visualization_type": "decision-tree",
+        "display_order": 1
+    },
+    {
+        "id": "bt_permutations",
+        "slug": "bt-permutations",
+        "title": "Permutations",
+        "difficulty": "medium",
+        "category_id": "backtracking",
+        "description": "Given an array nums of distinct integers, return all the possible permutations.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums = [1,2,3]",
+                "output": "[[1,2,3],[1,3,2],...]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        1,
+                        2,
+                        3
+                    ]
+                },
+                "expectedOutput": [
+                    [
+                        1,
+                        2,
+                        3
+                    ],
+                    [
+                        1,
+                        3,
+                        2
+                    ],
+                    [
+                        2,
+                        1,
+                        3
+                    ],
+                    [
+                        2,
+                        3,
+                        1
+                    ],
+                    [
+                        3,
+                        1,
+                        2
+                    ],
+                    [
+                        3,
+                        2,
+                        1
+                    ]
+                ]
+            }
+        ],
+        "starter_code_python": "def permute(nums):\n    pass",
+        "visualization_type": "decision-tree",
+        "display_order": 2
+    },
+    {
+        "id": "bt_combo_sum",
+        "slug": "bt-combo-sum",
+        "title": "Combination Sum",
+        "difficulty": "medium",
+        "category_id": "backtracking",
+        "description": "Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "cands=[2,3,6,7], target=7",
+                "output": "[[2,2,3],[7]]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "candidates": [
+                        2,
+                        3,
+                        6,
+                        7
+                    ],
+                    "target": 7
+                },
+                "expectedOutput": [
+                    [
+                        2,
+                        2,
+                        3
+                    ],
+                    [
+                        7
+                    ]
+                ]
+            }
+        ],
+        "starter_code_python": "def combination_sum(candidates, target):\n    pass",
+        "visualization_type": "decision-tree",
+        "display_order": 3
+    },
+    {
+        "id": "bt_generate_paren",
+        "slug": "bt-generate-paren",
+        "title": "Generate Parentheses",
+        "difficulty": "medium",
+        "category_id": "backtracking",
+        "description": "Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "n = 3",
+                "output": "['((()))','(()())',...]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "n": 3
+                },
+                "expectedOutput": [
+                    "((()))",
+                    "(()())",
+                    "(())()",
+                    "()(())",
+                    "()()()"
+                ]
+            }
+        ],
+        "starter_code_python": "def generate_parenthesis(n):\n    pass",
+        "visualization_type": "decision-tree",
+        "display_order": 4
+    },
+    {
+        "id": "bt_n_queens",
+        "slug": "bt-n-queens",
+        "title": "N-Queens",
+        "difficulty": "hard",
+        "category_id": "backtracking",
+        "description": "The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "n = 4",
+                "output": "[[...]]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "n": 4
+                },
+                "expectedOutput": []
+            }
+        ],
+        "starter_code_python": "def solve_n_queens(n):\n    pass",
+        "visualization_type": "decision-tree",
+        "display_order": 5
+    },
+    {
+        "id": "graph_dfs",
+        "slug": "graph-dfs",
+        "title": "Graph DFS Traversal",
+        "difficulty": "easy",
+        "category_id": "graphs",
+        "description": "Perform a depth-first search on a graph.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "graph={...}, start=0",
+                "output": "[0,1,2]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "graph": {},
+                    "start": 0
+                },
+                "expectedOutput": []
+            }
+        ],
+        "starter_code_python": "def dfs(graph, start):\n    pass",
+        "visualization_type": "graph",
+        "display_order": 1
+    },
+    {
+        "id": "graph_bfs",
+        "slug": "graph-bfs",
+        "title": "Graph BFS Traversal",
+        "difficulty": "easy",
+        "category_id": "graphs",
+        "description": "Perform a breadth-first search on a graph.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "graph={...}, start=0",
+                "output": "[0,1,2]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "graph": {},
+                    "start": 0
+                },
+                "expectedOutput": []
+            }
+        ],
+        "starter_code_python": "def bfs(graph, start):\n    pass",
+        "visualization_type": "graph",
+        "display_order": 2
+    },
+    {
+        "id": "graph_num_islands",
+        "slug": "graph-num-islands",
+        "title": "Number of Islands",
+        "difficulty": "medium",
+        "category_id": "graphs",
+        "description": "Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "grid=[['1','1','0']...]",
+                "output": "1",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "grid": [
+                        [
+                            "1",
+                            "1",
+                            "0"
+                        ]
+                    ]
+                },
+                "expectedOutput": 1
+            }
+        ],
+        "starter_code_python": "def num_islands(grid):\n    pass",
+        "visualization_type": "graph",
+        "display_order": 3
+    },
+    {
+        "id": "graph_clone",
+        "slug": "graph-clone",
+        "title": "Clone Graph",
+        "difficulty": "medium",
+        "category_id": "graphs",
+        "description": "Return a deep copy (clone) of a graph.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "adjList=[[2,4],[1,3]...]",
+                "output": "[[2,4],[1,3]...]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "node": null
+                },
+                "expectedOutput": null
+            }
+        ],
+        "starter_code_python": "def clone_graph(node):\n    pass",
+        "visualization_type": "graph",
+        "display_order": 4
+    },
+    {
+        "id": "graph_course_schedule",
+        "slug": "graph-course-schedule",
+        "title": "Course Schedule",
+        "difficulty": "medium",
+        "category_id": "graphs",
+        "description": "There are a total of numCourses courses you have to take. Return true if you can finish all courses.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "numCourses=2, pre=[[1,0]]",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "numCourses": 2,
+                    "prerequisites": [
+                        [
+                            1,
+                            0
+                        ]
+                    ]
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def can_finish(numCourses, prerequisites):\n    pass",
+        "visualization_type": "graph",
+        "display_order": 5
+    },
+    {
+        "id": "ag_network_delay",
+        "slug": "ag-network-delay",
+        "title": "Network Delay Time",
+        "difficulty": "medium",
+        "category_id": "advanced-graphs",
+        "description": "You are given a network of n nodes. Return the minimum time it takes for all nodes to receive a signal.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "times=[[2,1,1]...], n=4, k=2",
+                "output": "2",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "times": [
+                        [
+                            2,
+                            1,
+                            1
+                        ],
+                        [
+                            2,
+                            3,
+                            1
+                        ],
+                        [
+                            3,
+                            4,
+                            1
+                        ]
+                    ],
+                    "n": 4,
+                    "k": 2
+                },
+                "expectedOutput": 2
+            }
+        ],
+        "starter_code_python": "def network_delay_time(times, n, k):\n    pass",
+        "visualization_type": "weighted-graph",
+        "display_order": 1
+    },
+    {
+        "id": "ag_dijkstra",
+        "slug": "ag-dijkstra",
+        "title": "Dijkstra Shortest Path",
+        "difficulty": "medium",
+        "category_id": "advanced-graphs",
+        "description": "Implement Dijkstra's algorithm to find the shortest path from a source node to all other nodes in a weighted graph.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "graph={...}",
+                "output": "{'A':0, 'B':2}",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "graph": {},
+                    "start": "A"
+                },
+                "expectedOutput": {}
+            }
+        ],
+        "starter_code_python": "def dijkstra(graph, start):\n    pass",
+        "visualization_type": "weighted-graph",
+        "display_order": 2
+    },
+    {
+        "id": "ag_mst",
+        "slug": "ag-mst",
+        "title": "Minimum Spanning Tree",
+        "difficulty": "medium",
+        "category_id": "advanced-graphs",
+        "description": "Find the minimum spanning tree of a weighted undirected graph.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "n=3, edges=[[0,1,5]...]",
+                "output": "10",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "n": 3,
+                    "edges": []
+                },
+                "expectedOutput": 10
+            }
+        ],
+        "starter_code_python": "def mst(n, edges):\n    pass",
+        "visualization_type": "weighted-graph",
+        "display_order": 3
+    },
+    {
+        "id": "ag_union_find",
+        "slug": "ag-union-find",
+        "title": "Union Find Components",
+        "difficulty": "medium",
+        "category_id": "advanced-graphs",
+        "description": "Given n nodes and a list of edges, find the number of connected components.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "n=5, edges=[[0,1],[1,2]...]",
+                "output": "2",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "n": 5,
+                    "edges": [
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            3,
+                            4
+                        ]
+                    ]
+                },
+                "expectedOutput": 2
+            }
+        ],
+        "starter_code_python": "def count_components(n, edges):\n    pass",
+        "visualization_type": "graph",
+        "display_order": 4
+    },
+    {
+        "id": "ag_cheapest_flight",
+        "slug": "ag-cheapest-flight",
+        "title": "Cheapest Path With Stops",
+        "difficulty": "hard",
+        "category_id": "advanced-graphs",
+        "description": "Find the cheapest price from src to dst with up to k stops.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "n=3, flights=[...], src=0, dst=2, k=1",
+                "output": "200",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "n": 3,
+                    "flights": [],
+                    "src": 0,
+                    "dst": 2,
+                    "k": 1
+                },
+                "expectedOutput": 200
+            }
+        ],
+        "starter_code_python": "def find_cheapest_price(n, flights, src, dst, k):\n    pass",
+        "visualization_type": "weighted-graph",
+        "display_order": 5
+    },
+    {
+        "id": "heap_kth_largest",
+        "slug": "heap-kth-largest",
+        "title": "Kth Largest Element",
+        "difficulty": "medium",
+        "category_id": "heap",
+        "description": "Find the kth largest element in an unsorted array.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums=[3,2,1,5,6,4], k=2",
+                "output": "5",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        3,
+                        2,
+                        1,
+                        5,
+                        6,
+                        4
+                    ],
+                    "k": 2
+                },
+                "expectedOutput": 5
+            }
+        ],
+        "starter_code_python": "def find_kth_largest(nums, k):\n    pass",
+        "visualization_type": "binary-tree",
+        "display_order": 1
+    },
+    {
+        "id": "heap_last_stone",
+        "slug": "heap-last-stone",
+        "title": "Last Stone Weight",
+        "difficulty": "easy",
+        "category_id": "heap",
+        "description": "You are given an array of integers stones where stones[i] is the weight of the ith stone. Play the game and return the last stone weight.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "stones=[2,7,4,1,8,1]",
+                "output": "1",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "stones": [
+                        2,
+                        7,
+                        4,
+                        1,
+                        8,
+                        1
+                    ]
+                },
+                "expectedOutput": 1
+            }
+        ],
+        "starter_code_python": "def last_stone_weight(stones):\n    pass",
+        "visualization_type": "binary-tree",
+        "display_order": 2
+    },
+    {
+        "id": "heap_k_closest",
+        "slug": "heap-k-closest",
+        "title": "K Closest Points",
+        "difficulty": "medium",
+        "category_id": "heap",
+        "description": "Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane and an integer k, return the k closest points to the origin.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "points=[[1,3],[-2,2]], k=1",
+                "output": "[[-2,2]]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "points": [
+                        [
+                            1,
+                            3
+                        ],
+                        [
+                            -2,
+                            2
+                        ]
+                    ],
+                    "k": 1
+                },
+                "expectedOutput": [
+                    [
+                        -2,
+                        2
+                    ]
+                ]
+            }
+        ],
+        "starter_code_python": "def k_closest(points, k):\n    pass",
+        "visualization_type": "binary-tree",
+        "display_order": 3
+    },
+    {
+        "id": "heap_task_scheduler",
+        "slug": "heap-task-scheduler",
+        "title": "Task Scheduler",
+        "difficulty": "medium",
+        "category_id": "heap",
+        "description": "Given a characters array tasks, return the least number of units of times that the CPU will take to finish all the given tasks.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "tasks=['A','A','A','B','B','B'], n=2",
+                "output": "8",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "tasks": [
+                        "A",
+                        "A",
+                        "A",
+                        "B",
+                        "B",
+                        "B"
+                    ],
+                    "n": 2
+                },
+                "expectedOutput": 8
+            }
+        ],
+        "starter_code_python": "def least_interval(tasks, n):\n    pass",
+        "visualization_type": "binary-tree",
+        "display_order": 4
+    },
+    {
+        "id": "heap_merge_k",
+        "slug": "heap-merge-k",
+        "title": "Merge K Sorted Lists",
+        "difficulty": "hard",
+        "category_id": "heap",
+        "description": "You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "lists=[[1,4,5],[1,3,4],[2,6]]",
+                "output": "[1,1,2,3,4,4,5,6]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "lists": [
+                        [
+                            1,
+                            4,
+                            5
+                        ],
+                        [
+                            1,
+                            3,
+                            4
+                        ],
+                        [
+                            2,
+                            6
+                        ]
+                    ]
+                },
+                "expectedOutput": [
+                    1,
+                    1,
+                    2,
+                    3,
+                    4,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ],
+        "starter_code_python": "def merge_k_lists(lists):\n    pass",
+        "visualization_type": "binary-tree",
+        "display_order": 5
+    },
+    {
+        "id": "int_merge",
+        "slug": "int-merge",
+        "title": "Merge Intervals",
+        "difficulty": "medium",
+        "category_id": "intervals",
+        "description": "Given an array of intervals, merge all overlapping intervals.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "intervals=[[1,3],[2,6],[8,10],[15,18]]",
+                "output": "[[1,6],[8,10],[15,18]]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "intervals": [
+                        [
+                            1,
+                            3
+                        ],
+                        [
+                            2,
+                            6
+                        ],
+                        [
+                            8,
+                            10
+                        ],
+                        [
+                            15,
+                            18
+                        ]
+                    ]
+                },
+                "expectedOutput": [
+                    [
+                        1,
+                        6
+                    ],
+                    [
+                        8,
+                        10
+                    ],
+                    [
+                        15,
+                        18
+                    ]
+                ]
+            }
+        ],
+        "starter_code_python": "def merge(intervals):\n    pass",
+        "visualization_type": "intervals",
+        "display_order": 1
+    },
+    {
+        "id": "int_insert",
+        "slug": "int-insert",
+        "title": "Insert Interval",
+        "difficulty": "medium",
+        "category_id": "intervals",
+        "description": "Insert newInterval into intervals such that intervals is still sorted in ascending order by starti and intervals still does not have any overlapping intervals.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "intervals=[[1,3],[6,9]], newInterval=[2,5]",
+                "output": "[[1,5],[6,9]]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "intervals": [
+                        [
+                            1,
+                            3
+                        ],
+                        [
+                            6,
+                            9
+                        ]
+                    ],
+                    "newInterval": [
+                        2,
+                        5
+                    ]
+                },
+                "expectedOutput": [
+                    [
+                        1,
+                        5
+                    ],
+                    [
+                        6,
+                        9
+                    ]
+                ]
+            }
+        ],
+        "starter_code_python": "def insert(intervals, newInterval):\n    pass",
+        "visualization_type": "intervals",
+        "display_order": 2
+    },
+    {
+        "id": "int_non_overlap",
+        "slug": "int-non-overlap",
+        "title": "Non-Overlapping Intervals",
+        "difficulty": "medium",
+        "category_id": "intervals",
+        "description": "Given an array of intervals, return the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "intervals=[[1,2],[2,3],[3,4],[1,3]]",
+                "output": "1",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "intervals": [
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            2,
+                            3
+                        ],
+                        [
+                            3,
+                            4
+                        ],
+                        [
+                            1,
+                            3
+                        ]
+                    ]
+                },
+                "expectedOutput": 1
+            }
+        ],
+        "starter_code_python": "def erase_overlap_intervals(intervals):\n    pass",
+        "visualization_type": "intervals",
+        "display_order": 3
+    },
+    {
+        "id": "int_meeting",
+        "slug": "int-meeting",
+        "title": "Meeting Rooms",
+        "difficulty": "medium",
+        "category_id": "intervals",
+        "description": "Given an array of meeting time intervals, determine if a person could attend all meetings.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "intervals=[[0,30],[5,10],[15,20]]",
+                "output": "False",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "intervals": [
+                        [
+                            0,
+                            30
+                        ],
+                        [
+                            5,
+                            10
+                        ],
+                        [
+                            15,
+                            20
+                        ]
+                    ]
+                },
+                "expectedOutput": false
+            }
+        ],
+        "starter_code_python": "def can_attend_meetings(intervals):\n    pass",
+        "visualization_type": "intervals",
+        "display_order": 4
+    },
+    {
+        "id": "int_min_meeting",
+        "slug": "int-min-meeting",
+        "title": "Minimum Meeting Rooms",
+        "difficulty": "medium",
+        "category_id": "intervals",
+        "description": "Given an array of meeting time intervals, return the minimum number of conference rooms required.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "intervals=[[0,30],[5,10],[15,20]]",
+                "output": "2",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "intervals": [
+                        [
+                            0,
+                            30
+                        ],
+                        [
+                            5,
+                            10
+                        ],
+                        [
+                            15,
+                            20
+                        ]
+                    ]
+                },
+                "expectedOutput": 2
+            }
+        ],
+        "starter_code_python": "def min_meeting_rooms(intervals):\n    pass",
+        "visualization_type": "intervals",
+        "display_order": 5
+    },
+    {
+        "id": "greedy_max_sub",
+        "slug": "greedy-max-sub",
+        "title": "Maximum Subarray",
+        "difficulty": "medium",
+        "category_id": "greedy",
+        "description": "Given an integer array nums, find the subarray with the largest sum, and return its sum.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums=[-2,1,-3,4,-1,2,1,-5,4]",
+                "output": "6",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        -2,
+                        1,
+                        -3,
+                        4,
+                        -1,
+                        2,
+                        1,
+                        -5,
+                        4
+                    ]
+                },
+                "expectedOutput": 6
+            }
+        ],
+        "starter_code_python": "def max_sub_array(nums):\n    pass",
+        "visualization_type": "array",
+        "display_order": 1
+    },
+    {
+        "id": "greedy_jump",
+        "slug": "greedy-jump",
+        "title": "Jump Game",
+        "difficulty": "medium",
+        "category_id": "greedy",
+        "description": "You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums=[2,3,1,1,4]",
+                "output": "True",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        2,
+                        3,
+                        1,
+                        1,
+                        4
+                    ]
+                },
+                "expectedOutput": true
+            }
+        ],
+        "starter_code_python": "def can_jump(nums):\n    pass",
+        "visualization_type": "array",
+        "display_order": 2
+    },
+    {
+        "id": "greedy_gas",
+        "slug": "greedy-gas",
+        "title": "Gas Station",
+        "difficulty": "medium",
+        "category_id": "greedy",
+        "description": "Given two integer arrays gas and cost, return the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return -1.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "gas=[1,2,3,4,5], cost=[3,4,5,1,2]",
+                "output": "3",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "gas": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ],
+                    "cost": [
+                        3,
+                        4,
+                        5,
+                        1,
+                        2
+                    ]
+                },
+                "expectedOutput": 3
+            }
+        ],
+        "starter_code_python": "def can_complete_circuit(gas, cost):\n    pass",
+        "visualization_type": "array",
+        "display_order": 3
+    },
+    {
+        "id": "greedy_partition",
+        "slug": "greedy-partition",
+        "title": "Partition Labels",
+        "difficulty": "medium",
+        "category_id": "greedy",
+        "description": "You are given a string s. We want to partition the string into as many parts as possible so that each letter appears in at most one part.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "s='ababcbacadefegdehijhklij'",
+                "output": "[9,7,8]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "s": "ababcbacadefegdehijhklij"
+                },
+                "expectedOutput": [
+                    9,
+                    7,
+                    8
+                ]
+            }
+        ],
+        "starter_code_python": "def partition_labels(s):\n    pass",
+        "visualization_type": "array",
+        "display_order": 4
+    },
+    {
+        "id": "greedy_candy",
+        "slug": "greedy-candy",
+        "title": "Candy Distribution",
+        "difficulty": "hard",
+        "category_id": "greedy",
+        "description": "There are n children standing in a line. Each child is assigned a rating value given in the integer array ratings. Return the minimum number of candies you need to have to distribute the candies to the children.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "ratings=[1,0,2]",
+                "output": "5",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "ratings": [
+                        1,
+                        0,
+                        2
+                    ]
+                },
+                "expectedOutput": 5
+            }
+        ],
+        "starter_code_python": "def candy(ratings):\n    pass",
+        "visualization_type": "array",
+        "display_order": 5
+    },
+    {
+        "id": "dp_climbing",
+        "slug": "dp-climbing",
+        "title": "Climbing Stairs",
+        "difficulty": "easy",
+        "category_id": "dp",
+        "description": "You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "n=2",
+                "output": "2",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "n": 2
+                },
+                "expectedOutput": 2
+            }
+        ],
+        "starter_code_python": "def climb_stairs(n):\n    pass",
+        "visualization_type": "dp-array",
+        "display_order": 1
+    },
+    {
+        "id": "dp_house_robber",
+        "slug": "dp-house-robber",
+        "title": "House Robber",
+        "difficulty": "medium",
+        "category_id": "dp",
+        "description": "You are a professional robber planning to rob houses along a street. Determine the maximum amount of money you can rob tonight without alerting the police.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums=[1,2,3,1]",
+                "output": "4",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        1,
+                        2,
+                        3,
+                        1
+                    ]
+                },
+                "expectedOutput": 4
+            }
+        ],
+        "starter_code_python": "def rob(nums):\n    pass",
+        "visualization_type": "dp-array",
+        "display_order": 2
+    },
+    {
+        "id": "dp_coin_change",
+        "slug": "dp-coin-change",
+        "title": "Coin Change",
+        "difficulty": "medium",
+        "category_id": "dp",
+        "description": "You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money. Return the fewest number of coins that you need to make up that amount.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "coins=[1,2,5], amount=11",
+                "output": "3",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "coins": [
+                        1,
+                        2,
+                        5
+                    ],
+                    "amount": 11
+                },
+                "expectedOutput": 3
+            }
+        ],
+        "starter_code_python": "def coin_change(coins, amount):\n    pass",
+        "visualization_type": "dp-array",
+        "display_order": 3
+    },
+    {
+        "id": "dp_lis",
+        "slug": "dp-lis",
+        "title": "Longest Increasing Subsequence",
+        "difficulty": "medium",
+        "category_id": "dp",
+        "description": "Given an integer array nums, return the length of the longest strictly increasing subsequence.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums=[10,9,2,5,3,7,101,18]",
+                "output": "4",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        10,
+                        9,
+                        2,
+                        5,
+                        3,
+                        7,
+                        101,
+                        18
+                    ]
+                },
+                "expectedOutput": 4
+            }
+        ],
+        "starter_code_python": "def length_of_lis(nums):\n    pass",
+        "visualization_type": "dp-array",
+        "display_order": 4
+    },
+    {
+        "id": "dp_lcs",
+        "slug": "dp-lcs",
+        "title": "Longest Common Subsequence",
+        "difficulty": "medium",
+        "category_id": "dp",
+        "description": "Given two strings text1 and text2, return the length of their longest common subsequence.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "text1='abcde', text2='ace'",
+                "output": "3",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "text1": "abcde",
+                    "text2": "ace"
+                },
+                "expectedOutput": 3
+            }
+        ],
+        "starter_code_python": "def longest_common_subsequence(text1, text2):\n    pass",
+        "visualization_type": "dp-table",
+        "display_order": 5
+    },
+    {
+        "id": "bit_single",
+        "slug": "bit-single",
+        "title": "Single Number",
+        "difficulty": "easy",
+        "category_id": "bit-manipulation",
+        "description": "Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "nums=[2,2,1]",
+                "output": "1",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "nums": [
+                        2,
+                        2,
+                        1
+                    ]
+                },
+                "expectedOutput": 1
+            }
+        ],
+        "starter_code_python": "def single_number(nums):\n    pass",
+        "visualization_type": "array",
+        "display_order": 1
+    },
+    {
+        "id": "bit_one_bits",
+        "slug": "bit-one-bits",
+        "title": "Number of 1 Bits",
+        "difficulty": "easy",
+        "category_id": "bit-manipulation",
+        "description": "Write a function that takes the binary representation of an unsigned integer and returns the number of '1' bits it has.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "n=11",
+                "output": "3",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "n": 11
+                },
+                "expectedOutput": 3
+            }
+        ],
+        "starter_code_python": "def hamming_weight(n):\n    pass",
+        "visualization_type": "array",
+        "display_order": 2
+    },
+    {
+        "id": "bit_counting",
+        "slug": "bit-counting",
+        "title": "Counting Bits",
+        "difficulty": "easy",
+        "category_id": "bit-manipulation",
+        "description": "Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "n=2",
+                "output": "[0,1,1]",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "n": 2
+                },
+                "expectedOutput": [
+                    0,
+                    1,
+                    1
+                ]
+            }
+        ],
+        "starter_code_python": "def count_bits(n):\n    pass",
+        "visualization_type": "array",
+        "display_order": 3
+    },
+    {
+        "id": "bit_reverse",
+        "slug": "bit-reverse",
+        "title": "Reverse Bits",
+        "difficulty": "easy",
+        "category_id": "bit-manipulation",
+        "description": "Reverse bits of a given 32 bits unsigned integer.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "n=43261596",
+                "output": "964176192",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "n": 43261596
+                },
+                "expectedOutput": 964176192
+            }
+        ],
+        "starter_code_python": "def reverse_bits(n):\n    pass",
+        "visualization_type": "array",
+        "display_order": 4
+    },
+    {
+        "id": "bit_sum",
+        "slug": "bit-sum",
+        "title": "Sum Without Plus Operator",
+        "difficulty": "medium",
+        "category_id": "bit-manipulation",
+        "description": "Given two integers a and b, return the sum of the two integers without using the operators + and -.",
+        "constraints": [
+            "Data fits in memory",
+            "Standard constraints apply"
+        ],
+        "examples": [
+            {
+                "input": "a=1, b=2",
+                "output": "3",
+                "explanation": "Example case."
+            }
+        ],
+        "test_cases": [
+            {
+                "input": {
+                    "a": 1,
+                    "b": 2
+                },
+                "expectedOutput": 3
+            }
+        ],
+        "starter_code_python": "def get_sum(a, b):\n    pass",
+        "visualization_type": "array",
+        "display_order": 5
+    }
+]
