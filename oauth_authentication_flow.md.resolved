@@ -1,0 +1,89 @@
+# MagizhCode OAuth Authentication Flow
+
+This document explains how the Google/GitHub authentication works, where user data is stored, and why specific secrets are required.
+
+## 1. Where are New Users Stored?
+
+When a user logs in for the very first time, the backend dynamically provisions an account for them. 
+
+This data is stored in your **SQLite Database** (by default, `magizhcode.db` in your backend folder). Specifically, it is saved in the `users` table, which is defined in `backend/app/db/models.py`.
+
+The database stores the following information for each user:
+- `id`: A unique string identifier (e.g., `usr_go_12345`)
+- `email`: The user's email address retrieved from Google/GitHub
+- `name`: The user's display name
+- `avatar_url`: A link to their profile picture
+- `provider`: Where they logged in from (e.g., `"google"`, `"github"`)
+- `provider_user_id`: The unique ID Google or GitHub uses to identify them internally
+
+## 2. The Purpose of "Secrets" in `.env`
+
+Authentication relies on cryptographic security to ensure that bad actors cannot spoof logins. You have three main secrets involved:
+
+| Secret / Key | Purpose |
+|--------------|---------|
+| `GOOGLE_CLIENT_ID` | **Public Identifier:** This is your app's "username" when talking to Google. It tells Google *which* application is requesting access to a user's data. |
+| `GOOGLE_CLIENT_SECRET` | **Private Password:** This is a strictly confidential password shared only between your backend server and Google. It is used to prove to Google that the request is legitimately coming from your server, preventing hackers from stealing user tokens. |
+| `SECRET_KEY` | **Cookie Signature Key:** After a user logs in, your server gives them a "Session Cookie" to keep them logged in. The `SECRET_KEY` is a long, random string used to cryptographically sign this cookie. It prevents a user from tampering with the cookie (e.g., trying to change their User ID in the cookie from `User_A` to `User_B`). |
+
+> [!WARNING]
+> Never commit your `.env` file or your `CLIENT_SECRET` to GitHub! If a hacker gets your Client Secret, they can impersonate your application.
+
+---
+
+## 3. The Complete Authentication Flow (Step-by-Step)
+
+Here is the exact sequence of events that happens when a user clicks "Continue with Google":
+
+```mermaid
+sequenceDiagram
+    participant U as User Browser
+    participant F as Frontend (React)
+    participant B as Backend (FastAPI)
+    participant G as Google OAuth Servers
+
+    U->>F: Clicks "Continue with Google"
+    F->>B: Redirects to /api/v1/auth/google/login
+    
+    Note over B: Backend attaches GOOGLE_CLIENT_ID
+    B-->>U: HTTP 307 Redirect to Google's Login Page
+    
+    U->>G: User logs in & grants permission
+    Note over G: Google generates a temporary "code"
+    
+    G-->>U: HTTP 302 Redirect to /api/v1/auth/google/callback?code=xyz
+    U->>B: Browser follows redirect, sending the "code" to Backend
+    
+    Note over B: 🔒 SECURE SERVER-TO-SERVER COMMUNICATION
+    B->>G: POST: code + GOOGLE_CLIENT_SECRET
+    G-->>B: Returns Access Token (Validates the code)
+    
+    B->>G: GET: User Profile Data using Access Token
+    G-->>B: Returns {email, name, picture}
+    
+    Note over B: Backend checks SQLite Database
+    alt User exists in DB
+        B->>B: Updates last_login timestamp
+    else User is new
+        B->>B: Creates new User row in DB
+    end
+    
+    Note over B: Backend generates Session Cookie signed with SECRET_KEY
+    B-->>U: HTTP 307 Redirect to Frontend (/dashboard) + Set-Cookie Header
+    
+    U->>F: Loads Dashboard (Browser automatically saves the Cookie)
+    F->>B: GET /api/v1/auth/me (Sends Cookie)
+    B-->>F: Returns User JSON (Login Complete!)
+```
+
+### Breakdown of the Steps:
+
+1. **Initiation:** The user clicks the button. The frontend redirects them to the backend endpoint.
+2. **Redirection to Provider:** The backend creates a specific URL pointing to Google's servers. It includes your `GOOGLE_CLIENT_ID` so Google knows who is asking.
+3. **User Consent:** The user interacts entirely with Google's secure UI. Your app never sees their password.
+4. **The Callback:** Google redirects the user back to your backend `callback` URL, attaching a temporary, one-time-use string called a `code`.
+5. **Token Exchange (The Secure Part):** Your backend takes that `code`, attaches your `GOOGLE_CLIENT_SECRET`, and sends it directly to Google in a secure server-to-server request. Because you provided the secret, Google trusts you and responds with an `access_token`.
+6. **Fetching Profile Data:** Your backend uses the `access_token` to ask Google for the user's public profile (email, name, picture).
+7. **Database Storage:** The backend looks up the email in the SQLite database. If it's a new user, it creates a new row.
+8. **Session Creation:** The backend creates a session token (signed with `SECRET_KEY`), attaches it as an HTTP-only Cookie, and redirects the user to the React Dashboard.
+9. **Finalization:** The React app loads, sees the cookie, and asks the backend "Who am I?" (`/auth/me`). The backend verifies the cookie and returns the user data, completing the login.

@@ -1,0 +1,98 @@
+# MagizhCode Platform Architecture & Flow
+
+MagizhCode is a full-stack, data-driven DSA (Data Structures and Algorithms) learning platform. It allows users to solve algorithmic problems, track their progress, and visualize code execution step-by-step.
+
+---
+
+## 1. High-Level Technology Stack
+- **Frontend:** React, TypeScript, Vite, React Router, TailwindCSS (with a custom Magizh design system).
+- **Backend:** Python, FastAPI, SQLAlchemy (ORM).
+- **Database:** SQLite (local development/testing).
+- **Authentication:** OAuth2 (Google & GitHub) via Session Cookies.
+
+---
+
+## 2. Core Modules & User Journey
+
+### A. Authentication Flow
+When a user visits the platform, they land on the **Landing Page**.
+1. **OAuth Redirect:** The user clicks "Continue with Google/GitHub". The frontend redirects them to the backend (`/api/v1/auth/google/login`).
+2. **Provider Consent:** The backend securely passes the client ID to the provider, and the user logs in.
+3. **Session Creation:** The provider returns a temporary code, which the backend exchanges for user info (email, name, avatar). If the user doesn't exist in the database, they are registered.
+4. **Cookie & Redirection:** A signed session cookie (`magizhcode_session`) is returned to the user, redirecting them to the `/dashboard`.
+5. *(See `oauth_authentication_flow.md` for a deeper dive into secrets and tokens).*
+
+### B. Dashboard & Progress Tracking
+Once authenticated, the user lands on the **Dashboard** (`/dashboard`).
+1. **Data Fetching:** The React frontend requests `/api/v1/dashboard`.
+2. **Aggregation:** The backend calculates the total problems in the database and how many the user has marked as `SOLVED` in the `user_problem_progress` table.
+3. **Display:** The user sees their global progress, active streaks, and a breakdown of their progress by category (e.g., Arrays, Trees, Dynamic Programming).
+
+### C. Problem Discovery & Roadmap
+Users navigate to the **Roadmap** or **Problem List** (`/problems`).
+1. **Fetching Categories:** The frontend requests all categories and problems from `/api/v1/problems`.
+2. **Database Join:** The backend queries the `problems` table and joins it with the `user_problem_progress` table (specifically filtering for the current user ID).
+3. **State Mapping:** This ensures the UI instantly reflects which problems the user has solved, attempted, or not started.
+
+### D. The Workspace & Code Visualizer (Core Engine)
+When a user clicks on a problem (e.g., Two Sum), they enter the **Problem Workspace** (`/problems/:slug`).
+1. **Initialization:** The backend serves the problem's metadata: description, constraints, examples, and the `starter_code_python`.
+2. **User Input:** The user writes their solution in the integrated code editor.
+3. **Execution & Tracing:**
+   - The user clicks **Run** or **Visualize**.
+   - The code is sent via POST to `/api/v1/execution/run`.
+   - The backend securely executes the code using Python's `sys.settrace()` to trace the execution step-by-step. It captures variables, memory state, and call stacks at every line of execution.
+   - *(Note: The execution engine utilizes compression (GZipMiddleware) to ensure massive execution traces are transmitted back to the frontend quickly).*
+4. **Rendering:** The React frontend parses the execution trace and animates the data structures (Arrays, Pointers, Trees) changing over time.
+5. **Progress Update:** If the code passes all hidden `test_cases`, a request is made to update the `UserProblemProgress` status to `SOLVED`.
+
+---
+
+## 3. Database Architecture (Entity Relationship)
+
+The platform's data layer is driven by SQLAlchemy ORM.
+
+```mermaid
+erDiagram
+    User ||--o{ UserProblemProgress : "tracks"
+    Category ||--o{ Problem : "contains"
+    Problem ||--o{ UserProblemProgress : "has"
+
+    User {
+        string id PK
+        string email
+        string name
+        string provider
+        datetime last_login_at
+    }
+
+    Category {
+        string id PK
+        string slug
+        string name
+        int display_order
+    }
+
+    Problem {
+        string id PK
+        string slug
+        string title
+        string difficulty
+        json test_cases
+        string starter_code
+    }
+
+    UserProblemProgress {
+        int id PK
+        string user_id FK
+        string problem_id FK
+        string status "NOT_STARTED | IN_PROGRESS | SOLVED"
+        int attempts
+        datetime completed_at
+    }
+```
+
+### Key Relationships
+- **Categories to Problems (1-to-Many):** Each category (like "Two Pointers") contains multiple structured problems.
+- **Users to Progress (1-to-Many):** A user can have many progress records. 
+- **Problems to Progress (1-to-Many):** A problem will have multiple progress records (one for each user who attempts it). This enables the scalable tracking of thousands of users solving the same problem.

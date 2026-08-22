@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export function LandingPage() {
-  const { loginWithGoogle, loginWithGithub } = useAuth()
+  const { loginWithGoogle, loginWithGithub, loginWithDev } = useAuth()
   return (
-    <div className="flex flex-col min-h-screen bg-background text-text overflow-y-auto">
+    <div className="flex flex-col h-full bg-background text-text overflow-y-auto">
       {/* Nav */}
       <nav className="h-16 border-b border-border bg-surface/60 backdrop-blur-md sticky top-0 z-50 flex items-center justify-between px-8">
         <div className="flex items-center space-x-3">
@@ -12,15 +12,15 @@ export function LandingPage() {
           <span className="text-xl font-extrabold tracking-tight">Magizh<span className="text-primary">Code</span></span>
         </div>
         <div className="flex items-center space-x-4">
-          <Link to="/dashboard" className="text-sm font-semibold text-muted hover:text-text transition-colors">Sign In</Link>
-          <Link to="/dashboard" className="px-4 py-2 bg-primary text-background font-bold text-sm rounded-lg hover:bg-primary-light transition-colors shadow-lg shadow-primary/20">
+          <button onClick={loginWithGoogle} className="text-sm font-semibold text-muted hover:text-text transition-colors">Sign In</button>
+          <button onClick={loginWithGoogle} className="px-4 py-2 bg-primary text-background font-bold text-sm rounded-lg hover:bg-primary-light transition-colors shadow-lg shadow-primary/20">
             Get Started
-          </Link>
+          </button>
         </div>
       </nav>
 
       {/* Hero */}
-      <main className="flex-1 flex flex-col items-center justify-center px-8 py-28 text-center relative overflow-hidden">
+      <main className="flex-1 shrink-0 flex flex-col items-center justify-center px-8 py-28 text-center relative">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-primary/8 blur-[120px] rounded-full" />
           <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-secondary/6 blur-[80px] rounded-full" />

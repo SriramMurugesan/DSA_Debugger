@@ -26,8 +26,9 @@ def dev_login(response: Response, db: Session = Depends(get_db)):
         )
         db.add(user)
         db.commit()
-    set_session_cookie(response, user.id)
-    return RedirectResponse(f"{settings.FRONTEND_URL}/dashboard")
+    redirect = RedirectResponse(f"{settings.FRONTEND_URL}/dashboard")
+    set_session_cookie(redirect, user.id)
+    return redirect
 
 def set_session_cookie(response: Response, user_id: str):
     token = serializer.dumps({"user_id": user_id})
@@ -74,7 +75,7 @@ def logout(response: Response):
 # ─── GOOGLE OAUTH ─────────────────────────────────────────────────────────────
 
 @router.get("/auth/google/login")
-def google_login():
+def google_login(response: Response, db: Session = Depends(get_db)):
     if not settings.GOOGLE_CLIENT_ID:
         raise HTTPException(500, "Google OAuth not configured")
     
@@ -145,7 +146,7 @@ async def google_callback(code: str, request: Request, db: Session = Depends(get
 # ─── GITHUB OAUTH ─────────────────────────────────────────────────────────────
 
 @router.get("/auth/github/login")
-def github_login():
+def github_login(response: Response, db: Session = Depends(get_db)):
     if not settings.GITHUB_CLIENT_ID:
         raise HTTPException(500, "GitHub OAuth not configured")
     

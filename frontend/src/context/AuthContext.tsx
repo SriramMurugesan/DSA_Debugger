@@ -13,6 +13,7 @@ interface AuthContextType {
   loading: boolean;
   loginWithGoogle: () => void;
   loginWithGithub: () => void;
+  loginWithDev: () => void;
   logout: () => Promise<void>;
 }
 
@@ -46,6 +47,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1'}/auth/github/login`;
   };
 
+  const loginWithDev = () => {
+    window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1'}/auth/dev-login`;
+  };
+
   const logout = async () => {
     try {
       await apiClient.post('/auth/logout', {}, { withCredentials: true });
@@ -58,7 +63,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, loginWithGoogle, loginWithGithub, logout }}>
+    <AuthContext.Provider value={{ user, loading, loginWithGoogle, loginWithGithub, loginWithDev, logout }}>
       {children}
     </AuthContext.Provider>
   );
