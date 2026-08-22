@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  /* === MAGIZH BRAND COLORS === */
+  /* Deep dark backgrounds */
+  --color-background:   #090909;
+  --color-surface:      #131210;
+  --color-elevated:     #1C1B19;
+
+  /* Borders — warm charcoal */
+  --color-border:       #2A2824;
+  --color-border-active:#5A4825;
+
+  /* Primary — Magizh Warm Gold */
+  --color-primary:      #F2C55C;
+  --color-primary-light:#FFE7A3;
+  --color-primary-soft: #E8B94D;
+
+  /* Amber secondary */
+  --color-secondary:    #D99A32;
+
+  /* Crimson ribbon accent */
+  --color-crimson:      #D94B55;
+  --color-error:        #E05A62;
+
+  /* Text — warm off-white */
+  --color-text:         #F5F0E6;
+  --color-muted:        #7A7469;
+
+  /* Semantic */
+  --color-success:      #55B88A;
+  --color-warning:      #F2B84B;
+}
+
+@layer base {
+  html, body, #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Thin scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #2A2824 transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; height: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #2A2824; border-radius: 2px; }
+}
