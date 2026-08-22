@@ -131,7 +131,7 @@ export function Roadmap() {
                 <>
                   {/* Card — left */}
                   <div className="w-[44%] pr-10">
-                    <TopicCard topic={topic} topicProblems={topicProblems} isLeft />
+                    <TopicCard topic={topic} topicProblems={topicProblems} />
                   </div>
                   {/* Connector line left → spine */}
                   <div className="absolute left-[44%] top-10 w-[6%] h-px bg-primary/40" />
@@ -146,7 +146,7 @@ export function Roadmap() {
                   <div className="absolute left-[50%] top-10 w-[6%] h-px bg-primary/40" />
                   {/* Card — right */}
                   <div className="w-[44%] pl-10">
-                    <TopicCard topic={topic} topicProblems={topicProblems} isLeft={false} />
+                    <TopicCard topic={topic} topicProblems={topicProblems} />
                   </div>
                 </>
               )}
@@ -167,10 +167,9 @@ export function Roadmap() {
   )
 }
 
-function TopicCard({ topic, topicProblems, isLeft }: {
+function TopicCard({ topic, topicProblems }: {
   topic: RoadmapTopic
   topicProblems: any[]
-  isLeft: boolean
 }) {
   return (
     <div className={`

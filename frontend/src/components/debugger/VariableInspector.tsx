@@ -29,21 +29,29 @@ export function VariableInspector() {
   };
 
   // Pre-calculate status and sort
-  const variableEntries = Object.entries(currentStep.variables).map(([key, value]) => {
-    let isChanged = false;
-    let isNew = false;
-    if (previousStep && previousStep.variables) {
-      if (!(key in previousStep.variables)) {
-        isNew = true;
-      } else {
-        const prevVal = previousStep.variables[key];
-        isChanged = JSON.stringify(prevVal) !== JSON.stringify(value);
+  const variableEntries = Object.entries(currentStep.variables)
+    .filter(([key, value]) => {
+      // User requested to hide objects from the simple variables UI since they are rendered in the main visualizer
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        return false;
       }
-    } else if (currentStepIndex === 0) {
-      isNew = true; // Everything is new on step 0
-    }
-    return { key, value, isChanged, isNew };
-  });
+      return true;
+    })
+    .map(([key, value]) => {
+      let isChanged = false;
+      let isNew = false;
+      if (previousStep && previousStep.variables) {
+        if (!(key in previousStep.variables)) {
+          isNew = true;
+        } else {
+          const prevVal = previousStep.variables[key];
+          isChanged = JSON.stringify(prevVal) !== JSON.stringify(value);
+        }
+      } else if (currentStepIndex === 0) {
+        isNew = true; // Everything is new on step 0
+      }
+      return { key, value, isChanged, isNew };
+    });
 
   // Sort: changed/new first, then alphabetically
   variableEntries.sort((a, b) => {

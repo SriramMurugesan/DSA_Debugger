@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export function LandingPage() {
-  const { loginWithGoogle, loginWithGithub, loginWithDev } = useAuth()
+  const { loginWithGoogle, loginWithGithub } = useAuth()
   return (
     <div className="flex flex-col h-full bg-background text-text overflow-y-auto">
       {/* Nav */}

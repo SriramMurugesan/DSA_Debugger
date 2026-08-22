@@ -1,27 +1,31 @@
 import { motion } from 'framer-motion'
 
-interface Pointer {
-  name: string;
-  value: any;
-}
+export function DoublyLinkedListVisualizer({ structure }: { structure: any }) {
+  const nodes = structure.data || [];
+  const references = structure.references || {};
+  const nameLabel = Object.keys(references).join(', ') || 'Doubly Linked List';
 
-export function DoublyLinkedListVisualizer({ name, data, pointers }: { name: string, data: any, pointers: Pointer[] }) {
-  // Flatten doubly linked list into an array for visualization
-  const nodes = [];
-  let curr = data;
-  let safety = 0;
-  while (curr && curr.__id__ && safety < 50) {
-    nodes.push(curr);
-    curr = curr.next; // Assuming standard 'next' pointer
-    safety++;
-  }
+  const getPointersForNode = (id: string) => {
+    return Object.keys(references).filter(key => references[key] === id);
+  };
 
   return (
     <div className="flex flex-col items-center space-y-4 mb-8 w-full overflow-x-auto">
       <div className="text-primary font-mono text-sm font-semibold bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
-        {name} (Doubly LinkedList)
+        {nameLabel}
       </div>
       <div className="flex items-center space-x-2 py-8 px-4">
+        {nodes.length === 0 && (
+           <div className="flex flex-col items-center relative mt-4">
+             {references['head'] !== undefined ? (
+               <span className="text-[10px] font-mono text-secondary bg-secondary/10 px-1 rounded mb-2">head</span>
+             ) : (
+               <span className="text-[10px] font-mono text-secondary bg-secondary/10 px-1 rounded mb-2">head</span>
+             )}
+             <div className="w-1 h-4 bg-secondary mb-2" />
+             <span className="text-muted font-mono text-xs font-bold px-2 py-1 bg-surface border border-border rounded">null</span>
+           </div>
+        )}
         {nodes.length > 0 && (
            <div className="flex items-center">
              <span className="text-muted font-mono text-xs">null</span>
@@ -31,26 +35,27 @@ export function DoublyLinkedListVisualizer({ name, data, pointers }: { name: str
            </div>
         )}
         {nodes.map((node: any, idx: number) => {
-          // Find pointers pointing to this node
-          const nodePointers = pointers.filter(p => p.value && p.value.__id__ === node.__id__);
+          const nodePointers = getPointersForNode(node.id);
           
           return (
-            <div key={node.__id__} className="flex items-center">
+            <div key={node.id} className="flex items-center">
               <motion.div
                 layout
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="w-16 h-12 bg-surface border-2 border-primary/50 flex flex-col items-center justify-center rounded-lg shadow-sm relative"
               >
-                <span className="text-base font-bold text-text truncate px-1">{node.val !== undefined ? node.val : (node.value !== undefined ? node.value : '{...}')}</span>
+                <span className="text-base font-bold text-text truncate px-1">
+                  {node.value !== undefined && node.value !== null ? String(node.value) : '{...}'}
+                </span>
                 
                 {/* Render Pointers */}
                 {nodePointers.length > 0 && (
-                  <div className="absolute -bottom-8 flex flex-col items-center space-y-1">
+                  <div className="absolute -top-10 flex flex-col items-center space-y-1">
                     {nodePointers.map((p) => (
-                      <div key={p.name} className="flex flex-col items-center">
+                      <div key={p} className="flex flex-col items-center">
+                        <span className="text-[10px] font-mono text-secondary bg-secondary/10 px-1 rounded">{p}</span>
                         <div className="w-1 h-2 bg-secondary" />
-                        <span className="text-[10px] font-mono text-secondary bg-secondary/10 px-1 rounded">{p.name}</span>
                       </div>
                     ))}
                   </div>

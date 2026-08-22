@@ -2,7 +2,7 @@ import sys
 import io
 from typing import List
 from app.schemas.execution import ExecutionStep
-from app.execution.normalizer import snapshot_variables
+from app.execution.normalizer import serialize_state
 
 class CodeTracer:
     """Hooks into sys.settrace to capture execution states line by line."""
@@ -22,7 +22,7 @@ class CodeTracer:
             
         self.step_count += 1
         
-        variables = snapshot_variables(frame.f_locals)
+        variables, memory = serialize_state(frame.f_locals)
         stdout_content = self.stdout_capture.getvalue().splitlines()
         
         step = ExecutionStep(
@@ -32,7 +32,7 @@ class CodeTracer:
             variables=variables,
             stdout=stdout_content,
             call_stack=[{"function": frame.f_code.co_name}],
-            memory={},
+            memory=memory,
             visualization_events=[],
             timestamp=None
         )
