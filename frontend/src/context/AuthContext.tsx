@@ -11,6 +11,8 @@ interface User {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  register: (email: string, password: string, name: string) => Promise<void>;
   loginWithGoogle: () => void;
   loginWithGithub: () => void;
   loginWithDev: () => void;
@@ -39,6 +41,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     checkAuth();
   }, []);
 
+  const login = async (email: string, password: string) => {
+    const { data } = await apiClient.post('/auth/login', { email, password }, { withCredentials: true });
+    setUser(data);
+  };
+
+  const register = async (email: string, password: string, name: string) => {
+    const { data } = await apiClient.post('/auth/register', { email, password, name }, { withCredentials: true });
+    setUser(data);
+  };
+
   const loginWithGoogle = () => {
     window.location.href = getAuthRedirectUrl('google/login');
   };
@@ -63,7 +75,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, loginWithGoogle, loginWithGithub, loginWithDev, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, register, loginWithGoogle, loginWithGithub, loginWithDev, logout }}>
       {children}
     </AuthContext.Provider>
   );

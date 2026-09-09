@@ -27,29 +27,29 @@ export function TopNav() {
   ]
 
   return (
-    <nav className="h-14 border-b border-border bg-surface shrink-0 z-50 flex items-center justify-between px-6 shadow-sm">
+    <nav className="h-16 border-b border-white/[0.06] bg-[#070707]/90 backdrop-blur-xl shrink-0 z-50 flex items-center justify-between px-6 md:px-8 shadow-sm">
       <div className="flex items-center space-x-8">
-        <Link to="/dashboard" className="flex items-center space-x-2.5">
-          <img src="/logo.png" alt="MagizhCode Logo" className="h-8 w-8 object-contain" />
-          <span className="text-xl font-extrabold text-text tracking-tight">
-            Magizh<span className="text-primary">Code</span>
+        <Link to="/dashboard" className="flex items-center space-x-3">
+          <img src="/logo.png" alt="Magizh Logo" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(242,197,92,0.3)]" />
+          <span className="text-xs md:text-sm font-extrabold tracking-[0.18em] uppercase text-white">
+            Magizh<span className="text-[#F2C55C]">Code</span>
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center space-x-2">
           {navItems.map(item => {
             const isActive = location.pathname.startsWith(item.path)
             return (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`relative px-4 py-4 text-sm font-semibold transition-colors ${
-                  isActive ? 'text-primary' : 'text-muted hover:text-text'
+                className={`relative px-4 py-2 text-xs uppercase tracking-wider font-semibold transition-all rounded-lg ${
+                  isActive ? 'text-[#F2C55C] bg-white/[0.03]' : 'text-neutral-400 hover:text-white hover:bg-white/[0.02]'
                 }`}
               >
                 {item.name}
                 {isActive && (
-                  <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-primary rounded-full" />
+                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-[#F2C55C] rounded-full shadow-[0_0_8px_rgba(242,197,92,0.8)]" />
                 )}
               </Link>
             )

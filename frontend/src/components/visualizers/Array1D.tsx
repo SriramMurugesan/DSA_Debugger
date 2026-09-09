@@ -91,21 +91,18 @@ export function Array1DVisualizer({ name, data, pointers = [] }: { name: string,
           
           // Determine cell styles based on mode
           let isWindowed = false;
-          let cellBorder = "border-primary/50";
-          let cellBg = "bg-surface";
+          let roleBorder = "";
 
           if (mode === 'slidingwindow' && windowStart !== -1 && windowEnd !== -1) {
             if (idx >= windowStart && idx <= windowEnd) {
               isWindowed = true;
-              cellBg = "bg-primary/20";
-              cellBorder = "border-primary";
             }
           }
 
           if (mode !== 'default') {
              for (const [role, pName] of Object.entries(bindings)) {
                if (pointers.find(p => p.name === pName)?.value === idx) {
-                 cellBorder = getBorderColor(role);
+                 roleBorder = getBorderColor(role);
                }
              }
           }
@@ -114,7 +111,7 @@ export function Array1DVisualizer({ name, data, pointers = [] }: { name: string,
             <div key={`${idx}`} className="relative flex flex-col items-center">
               {/* Pointers above cell */}
               {cellPointers.length > 0 && (
-                <div className="absolute bottom-full mb-2 flex flex-col-reverse items-center gap-1 z-20">
+                <div className="absolute bottom-full mb-2.5 flex flex-col-reverse items-center gap-1 z-20">
                   {cellPointers.map(p => {
                     let role = 'default';
                     if (mode !== 'default') {
@@ -125,11 +122,11 @@ export function Array1DVisualizer({ name, data, pointers = [] }: { name: string,
                     const badgeColor = getRoleColor(role);
 
                     return (
-                      <div key={p.name} className="flex flex-col items-center">
-                        <span className={`text-[10px] sm:text-xs font-mono font-bold px-1.5 sm:px-2 py-0.5 rounded shadow-sm ${badgeColor}`}>
+                      <div key={p.name} className="flex flex-col items-center animate-bounce duration-1000">
+                        <span className={`text-[10px] font-mono font-extrabold px-2 py-0.5 rounded-full shadow-md shadow-black/50 ${badgeColor}`}>
                           {p.name}
                         </span>
-                        <div className={`w-0.5 h-1.5 sm:h-2 ${badgeColor.split(' ')[0]}`} />
+                        <div className={`w-0.5 h-2 ${badgeColor.split(' ')[0]}`} />
                       </div>
                     )
                   })}
@@ -139,15 +136,29 @@ export function Array1DVisualizer({ name, data, pointers = [] }: { name: string,
               {/* The Cell */}
               <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0.8, y: -20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                className={`aspect-square w-full min-w-[40px] max-w-[120px] border-2 flex flex-col items-center justify-center shadow-sm relative z-10 transition-colors ${cellBg} ${cellBorder} ${isWindowed ? 'rounded-md' : 'rounded'}`}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl border flex flex-col items-center justify-center shadow-lg relative z-10 transition-all ${
+                  roleBorder || (
+                    cellPointers.length > 0
+                      ? 'border-amber-400 bg-amber-500/15 shadow-[0_0_16px_rgba(242,197,92,0.25)]'
+                      : isWindowed
+                      ? 'border-amber-400/80 bg-amber-500/10'
+                      : 'border-border/80 bg-gradient-to-b from-[#1A1A1E] to-[#121214]'
+                  )
+                }`}
               >
-                <span className="text-lg sm:text-2xl font-bold text-text truncate max-w-full px-1">
+                <span className={`text-base sm:text-xl md:text-2xl font-extrabold font-mono truncate max-w-full px-1 ${
+                  cellPointers.length > 0 ? 'text-amber-300' : 'text-text'
+                }`}>
                   {typeof val === 'object' ? '{...}' : val}
                 </span>
-                <span className="absolute -bottom-5 sm:-bottom-6 text-[9px] sm:text-[11px] text-muted font-mono font-bold">{idx}</span>
               </motion.div>
+
+              {/* Index below cell */}
+              <span className="mt-2 text-[10px] text-muted/70 font-mono font-bold px-1.5 py-0.2 rounded bg-surface border border-border/40">
+                [{idx}]
+              </span>
             </div>
           )
         })}

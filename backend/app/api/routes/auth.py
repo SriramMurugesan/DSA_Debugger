@@ -2,15 +2,95 @@ from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from datetime import datetime
+import hashlib
+import os
+import uuid
 import httpx
 import json
 from itsdangerous import URLSafeSerializer
 
 from app.db.models import get_db, User
 from app.core.config import settings
+from app.schemas.auth import RegisterRequest, LoginRequest
 
 router = APIRouter()
 serializer = URLSafeSerializer(settings.SECRET_KEY)
+
+
+def hash_password(password: str, salt: str = None) -> tuple[str, str]:
+    if not salt:
+        salt = os.urandom(16).hex()
+    dk = hashlib.pbkdf2_hmac(
+        "sha256",
+        password.encode("utf-8"),
+        bytes.fromhex(salt),
+        100000
+    )
+    return dk.hex(), salt
+
+
+def verify_password(password: str, password_hash: str, salt: str) -> bool:
+    dk = hashlib.pbkdf2_hmac(
+        "sha256",
+        password.encode("utf-8"),
+        bytes.fromhex(salt),
+        100000
+    )
+    return dk.hex() == password_hash
+
+
+@router.post("/auth/register")
+def register(req: RegisterRequest, response: Response, db: Session = Depends(get_db)):
+    email_clean = req.email.strip().lower()
+    existing = db.query(User).filter_by(email=email_clean).first()
+    if existing:
+        raise HTTPException(status_code=400, detail="An account with this email already exists")
+
+    p_hash, salt = hash_password(req.password)
+    user = User(
+        id=f"usr_{uuid.uuid4().hex[:12]}",
+        email=email_clean,
+        name=req.name.strip(),
+        password_hash=p_hash,
+        password_salt=salt,
+        provider="local",
+        provider_user_id=email_clean,
+        created_at=datetime.utcnow(),
+        last_login_at=datetime.utcnow()
+    )
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+
+    set_session_cookie(response, user.id)
+    return {
+        "id": user.id,
+        "email": user.email,
+        "name": user.name,
+        "avatar_url": user.avatar_url
+    }
+
+
+@router.post("/auth/login")
+def login(req: LoginRequest, response: Response, db: Session = Depends(get_db)):
+    email_clean = req.email.strip().lower()
+    user = db.query(User).filter_by(email=email_clean).first()
+    if not user or not user.password_hash or not user.password_salt:
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+
+    if not verify_password(req.password, user.password_hash, user.password_salt):
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+
+    user.last_login_at = datetime.utcnow()
+    db.commit()
+
+    set_session_cookie(response, user.id)
+    return {
+        "id": user.id,
+        "email": user.email,
+        "name": user.name,
+        "avatar_url": user.avatar_url
+    }
 
 @router.get("/auth/dev-login")
 def dev_login(response: Response, db: Session = Depends(get_db)):

@@ -9,8 +9,10 @@ interface ExecutionStore {
   currentStepIndex: number;
   speed: number;
   error: string | null;
+  testCallSnippet: string | null;
 
   setCode: (code: string) => void;
+  setTestCallSnippet: (snippet: string | null) => void;
   executeCode: (mode?: 'run' | 'visualize') => Promise<void>;
   
   setSteps: (steps: ExecutionStep[]) => void;
@@ -32,8 +34,10 @@ export const useExecutionStore = create<ExecutionStore>((set, get) => ({
   currentStepIndex: 0,
   speed: 1,
   error: null,
+  testCallSnippet: null,
 
   setCode: (code) => set({ code }),
+  setTestCallSnippet: (snippet) => set({ testCallSnippet: snippet }),
   
   executeCode: async (mode: 'run' | 'visualize' = 'visualize') => {
     const { code } = get();

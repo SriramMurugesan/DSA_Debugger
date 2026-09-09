@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     PORT: int = 8000
 
     # Database
-    DATABASE_URL: str = "sqlite:///./magizhcode.db"
+    DATABASE_URL: str = ""
 
     # Security & Session Cookies
     SECRET_KEY: str = "dev-secret-key-change-in-production"

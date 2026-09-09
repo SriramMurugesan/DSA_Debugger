@@ -27,10 +27,12 @@ export function CodeEditor() {
             options: {
               isWholeLine: true,
               className: 'monaco-active-line',
+              glyphMarginClassName: 'monaco-active-glyph',
             }
           }
         ]
       );
+      editorRef.current.revealLineInCenterIfOutsideViewport(line);
     } else {
       decorationsRef.current = editorRef.current.deltaDecorations(decorationsRef.current, []);
     }
@@ -53,6 +55,8 @@ export function CodeEditor() {
         smoothScrolling: true,
         cursorBlinking: "smooth",
         padding: { top: 16 },
+        glyphMargin: true,
+        renderLineHighlight: 'none',
       }}
     />
   );

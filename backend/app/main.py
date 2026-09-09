@@ -10,8 +10,18 @@ from app.api.routes import health, execution, auth, problems, dashboard
 async def lifespan(app: FastAPI):
     # Auto-initialize database tables and seed if empty
     try:
+        from sqlalchemy import text
         from app.db.models import Base, engine, SessionLocal, Category
         Base.metadata.create_all(bind=engine)
+
+        # Ensure password columns exist on existing databases
+        with engine.connect() as conn:
+            for col in ["password_hash", "password_salt"]:
+                try:
+                    conn.execute(text(f"ALTER TABLE users ADD COLUMN {col} VARCHAR"))
+                    conn.commit()
+                except Exception:
+                    pass
 
         db = SessionLocal()
         try:

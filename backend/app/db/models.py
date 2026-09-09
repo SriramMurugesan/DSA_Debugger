@@ -10,9 +10,14 @@ class ProgressStatus(str, enum.Enum):
     IN_PROGRESS = "IN_PROGRESS"
     SOLVED = "SOLVED"
 
+db_url = settings.DATABASE_URL
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+
 engine = create_engine(
-    settings.DATABASE_URL,
-    connect_args={"check_same_thread": False} if "sqlite" in settings.DATABASE_URL else {}
+    db_url,
+    connect_args={"check_same_thread": False} if "sqlite" in db_url else {},
+    pool_pre_ping=True
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -30,8 +35,10 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     name = Column(String)
     avatar_url = Column(String, nullable=True)
-    provider = Column(String)
-    provider_user_id = Column(String, index=True)
+    password_hash = Column(String, nullable=True)
+    password_salt = Column(String, nullable=True)
+    provider = Column(String, default="local")
+    provider_user_id = Column(String, index=True, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     last_login_at = Column(DateTime, default=datetime.utcnow)
     progress = relationship("UserProblemProgress", back_populates="user")

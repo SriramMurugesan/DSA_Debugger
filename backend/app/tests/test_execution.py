@@ -13,7 +13,7 @@ def test_execution_valid_code():
     """Ensure valid python code executes and returns a timeline."""
     response = client.post("/api/v1/execution/run", json={
         "language": "python",
-        "code": "a = 10\\nb = 20\\nc = a + b"
+        "code": "a = 10\nb = 20\nc = a + b"
     })
     assert response.status_code == 200
     data = response.json()
@@ -26,7 +26,7 @@ def test_execution_invalid_code():
     """Ensure malicious code is rejected by the AST parser."""
     response = client.post("/api/v1/execution/run", json={
         "language": "python",
-        "code": "import os\\nos.system('echo hacker')"
+        "code": "import os\nos.system('echo hacker')"
     })
     assert response.status_code == 200
     data = response.json()
