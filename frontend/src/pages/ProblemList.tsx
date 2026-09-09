@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useMemo, useEffect } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Search, Loader2 } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { apiClient } from '../utils/api'
@@ -35,9 +35,37 @@ export const ALL_CATEGORIES = [
 ]
 
 export function ProblemList() {
-  const [activeCategory, setActiveCategory] = useState('All')
-  const [activeDifficulty, setActiveDifficulty] = useState('All')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const initialCategory = searchParams.get('category') || 'All'
+  const initialDifficulty = searchParams.get('difficulty') || 'All'
+
+  const [activeCategory, setActiveCategory] = useState(initialCategory)
+  const [activeDifficulty, setActiveDifficulty] = useState(initialDifficulty)
   const [searchQuery, setSearchQuery] = useState('')
+
+  // Sync state if URL search params change (e.g. from Roadmap or Dashboard links)
+  useEffect(() => {
+    const urlCategory = searchParams.get('category') || 'All'
+    const urlDifficulty = searchParams.get('difficulty') || 'All'
+    if (urlCategory !== activeCategory) setActiveCategory(urlCategory)
+    if (urlDifficulty !== activeDifficulty) setActiveDifficulty(urlDifficulty)
+  }, [searchParams])
+
+  const handleCategorySelect = (cat: string) => {
+    setActiveCategory(cat)
+    const newParams = new URLSearchParams(searchParams)
+    if (cat === 'All') newParams.delete('category')
+    else newParams.set('category', cat)
+    setSearchParams(newParams)
+  }
+
+  const handleDifficultySelect = (diff: string) => {
+    setActiveDifficulty(diff)
+    const newParams = new URLSearchParams(searchParams)
+    if (diff === 'All') newParams.delete('difficulty')
+    else newParams.set('difficulty', diff)
+    setSearchParams(newParams)
+  }
 
   const { data: problems = [], isLoading } = useQuery<Problem[]>({
     queryKey: ['problems', activeCategory, activeDifficulty],
@@ -96,7 +124,7 @@ export function ProblemList() {
           {difficulties.map(d => (
             <button
               key={d}
-              onClick={() => setActiveDifficulty(d)}
+              onClick={() => handleDifficultySelect(d)}
               className={`px-3 py-1 rounded-full text-xs font-bold capitalize transition-all border ${
                 activeDifficulty === d
                   ? 'bg-primary text-background border-primary'
@@ -114,7 +142,7 @@ export function ProblemList() {
           {ALL_CATEGORIES.map(cat => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => handleCategorySelect(cat)}
               className={`px-3 py-1 rounded-full text-xs font-semibold transition-all border ${
                 activeCategory === cat
                   ? 'bg-primary text-background border-primary'

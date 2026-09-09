@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { apiClient } from '../utils/api';
+import { apiClient, getAuthRedirectUrl } from '../utils/api';
 
 interface User {
   id: string;
@@ -40,15 +40,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const loginWithGoogle = () => {
-    window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1'}/auth/google/login`;
+    window.location.href = getAuthRedirectUrl('google/login');
   };
 
   const loginWithGithub = () => {
-    window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1'}/auth/github/login`;
+    window.location.href = getAuthRedirectUrl('github/login');
   };
 
   const loginWithDev = () => {
-    window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1'}/auth/dev-login`;
+    window.location.href = getAuthRedirectUrl('dev-login');
   };
 
   const logout = async () => {

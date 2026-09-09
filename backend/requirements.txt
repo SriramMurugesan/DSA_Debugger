@@ -1,5 +1,9 @@
 fastapi
 uvicorn
 pydantic>=2.0.0
+pydantic-settings>=2.0.0
 sqlalchemy
 psycopg2-binary
+httpx>=0.25.0
+itsdangerous>=2.1.0
+pytest>=7.0.0

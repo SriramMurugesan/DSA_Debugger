@@ -37,11 +37,18 @@ def set_session_cookie(response: Response, user_id: str):
         value=token,
         max_age=settings.SESSION_MAX_AGE_SECONDS,
         httponly=True,
-        samesite="lax"
+        secure=settings.SESSION_COOKIE_SECURE,
+        samesite=settings.SESSION_COOKIE_SAMESITE,
+        domain=settings.SESSION_COOKIE_DOMAIN,
+        path="/"
     )
 
 def clear_session_cookie(response: Response):
-    response.delete_cookie(settings.SESSION_COOKIE_NAME)
+    response.delete_cookie(
+        key=settings.SESSION_COOKIE_NAME,
+        domain=settings.SESSION_COOKIE_DOMAIN,
+        path="/"
+    )
 
 def get_current_user(request: Request, db: Session = Depends(get_db)):
     token = request.cookies.get(settings.SESSION_COOKIE_NAME)

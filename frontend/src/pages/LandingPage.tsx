@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export function LandingPage() {
-  const { loginWithGoogle, loginWithGithub } = useAuth()
+  const { loginWithGoogle, loginWithGithub, loginWithDev } = useAuth()
+  const showDevLogin = import.meta.env.DEV || import.meta.env.VITE_ENABLE_DEV_LOGIN === 'true'
   return (
     <div className="flex flex-col h-full bg-background text-text overflow-y-auto">
       {/* Nav */}
@@ -67,6 +68,19 @@ export function LandingPage() {
             <span>Continue with GitHub</span>
           </button>
         </div>
+
+        {showDevLogin && (
+          <div className="mt-6 relative z-10">
+            <button
+              onClick={loginWithDev}
+              className="text-xs font-semibold px-4 py-2 rounded-lg bg-surface/80 border border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/60 transition-all flex items-center gap-2 shadow-sm"
+              title="Quickly test the platform with a pre-configured developer profile without setting up OAuth keys."
+            >
+              <span>⚡</span>
+              <span>Test Mode: Instant Developer Login (Bypass OAuth)</span>
+            </button>
+          </div>
+        )}
       </main>
 
       {/* Features */}

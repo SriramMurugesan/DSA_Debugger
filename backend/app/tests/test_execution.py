@@ -31,4 +31,4 @@ def test_execution_invalid_code():
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "error"
-    assert "import statements are not allowed" in data["error"]["message"]
+    assert "not allowed for security reasons" in data["error"]["message"]
