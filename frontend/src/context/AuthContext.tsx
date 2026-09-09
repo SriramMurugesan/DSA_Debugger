@@ -43,11 +43,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     const { data } = await apiClient.post('/auth/login', { email, password }, { withCredentials: true });
+    if (data?.token) {
+      localStorage.setItem('magizhcode_token', data.token);
+    }
     setUser(data);
   };
 
   const register = async (email: string, password: string, name: string) => {
     const { data } = await apiClient.post('/auth/register', { email, password, name }, { withCredentials: true });
+    if (data?.token) {
+      localStorage.setItem('magizhcode_token', data.token);
+    }
     setUser(data);
   };
 
@@ -69,6 +75,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (err) {
       console.error('Logout failed', err);
     } finally {
+      localStorage.removeItem('magizhcode_token');
       setUser(null);
       window.location.href = '/';
     }

@@ -12,6 +12,17 @@ export const apiClient = axios.create({
   },
 });
 
+// Automatically attach stored token to ensure cross-origin authentication works on all browsers
+apiClient.interceptors.request.use((config) => {
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('magizhcode_token');
+    if (token && config.headers) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  }
+  return config;
+});
+
 /**
  * Helper to construct the full redirect URL for OAuth and test login
  */

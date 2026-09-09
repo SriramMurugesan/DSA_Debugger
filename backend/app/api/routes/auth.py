@@ -62,12 +62,13 @@ def register(req: RegisterRequest, response: Response, db: Session = Depends(get
     db.commit()
     db.refresh(user)
 
-    set_session_cookie(response, user.id)
+    token = set_session_cookie(response, user.id)
     return {
         "id": user.id,
         "email": user.email,
         "name": user.name,
-        "avatar_url": user.avatar_url
+        "avatar_url": user.avatar_url,
+        "token": token
     }
 
 
@@ -84,12 +85,13 @@ def login(req: LoginRequest, response: Response, db: Session = Depends(get_db)):
     user.last_login_at = datetime.utcnow()
     db.commit()
 
-    set_session_cookie(response, user.id)
+    token = set_session_cookie(response, user.id)
     return {
         "id": user.id,
         "email": user.email,
         "name": user.name,
-        "avatar_url": user.avatar_url
+        "avatar_url": user.avatar_url,
+        "token": token
     }
 
 @router.get("/auth/dev-login")
@@ -110,28 +112,44 @@ def dev_login(response: Response, db: Session = Depends(get_db)):
     set_session_cookie(redirect, user.id)
     return redirect
 
-def set_session_cookie(response: Response, user_id: str):
+def set_session_cookie(response: Response, user_id: str) -> str:
     token = serializer.dumps({"user_id": user_id})
+    is_prod = bool(os.getenv("VERCEL")) or bool(os.getenv("VERCEL_ENV")) or settings.ENVIRONMENT == "production"
+    is_secure = True if is_prod else settings.SESSION_COOKIE_SECURE
+    samesite = "none" if is_prod else settings.SESSION_COOKIE_SAMESITE
+
     response.set_cookie(
         key=settings.SESSION_COOKIE_NAME,
         value=token,
         max_age=settings.SESSION_MAX_AGE_SECONDS,
         httponly=True,
-        secure=settings.SESSION_COOKIE_SECURE,
-        samesite=settings.SESSION_COOKIE_SAMESITE,
+        secure=is_secure,
+        samesite=samesite,
         domain=settings.SESSION_COOKIE_DOMAIN,
         path="/"
     )
+    return token
 
 def clear_session_cookie(response: Response):
+    is_prod = bool(os.getenv("VERCEL")) or bool(os.getenv("VERCEL_ENV")) or settings.ENVIRONMENT == "production"
+    is_secure = True if is_prod else settings.SESSION_COOKIE_SECURE
+    samesite = "none" if is_prod else settings.SESSION_COOKIE_SAMESITE
+
     response.delete_cookie(
         key=settings.SESSION_COOKIE_NAME,
         domain=settings.SESSION_COOKIE_DOMAIN,
-        path="/"
+        path="/",
+        secure=is_secure,
+        samesite=samesite
     )
 
 def get_current_user(request: Request, db: Session = Depends(get_db)):
     token = request.cookies.get(settings.SESSION_COOKIE_NAME)
+    if not token:
+        auth_header = request.headers.get("Authorization")
+        if auth_header and auth_header.startswith("Bearer "):
+            token = auth_header.split(" ")[1]
+
     if not token:
         raise HTTPException(status_code=401, detail="Not authenticated")
     try:
