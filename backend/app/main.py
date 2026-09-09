@@ -50,11 +50,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(health.router, prefix="/api/v1")
-app.include_router(execution.router, prefix="/api/v1/execution")
-app.include_router(auth.router, prefix="/api/v1")
-app.include_router(problems.router, prefix="/api/v1")
-app.include_router(dashboard.router, prefix="/api/v1")
+@app.get("/")
+def root():
+    return {"status": "ok", "service": "MagizhCode API", "version": "1.0.0"}
+
+@app.get("/health")
+def root_health():
+    return {"status": "healthy"}
+
+for pfx in ["/api/v1", "/v1"]:
+    app.include_router(health.router, prefix=pfx)
+    app.include_router(execution.router, prefix=f"{pfx}/execution")
+    app.include_router(auth.router, prefix=pfx)
+    app.include_router(problems.router, prefix=pfx)
+    app.include_router(dashboard.router, prefix=pfx)
 
 if __name__ == "__main__":
     import uvicorn
