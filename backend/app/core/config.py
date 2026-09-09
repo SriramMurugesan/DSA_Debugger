@@ -21,8 +21,8 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "dev-secret-key-change-in-production"
     SESSION_COOKIE_NAME: str = "magizhcode_session"
     SESSION_MAX_AGE_SECONDS: int = 86400
-    SESSION_COOKIE_SECURE: bool = False
-    SESSION_COOKIE_SAMESITE: str = "lax"
+    SESSION_COOKIE_SECURE: bool = bool(os.getenv("VERCEL"))
+    SESSION_COOKIE_SAMESITE: str = "none" if os.getenv("VERCEL") else "lax"
     SESSION_COOKIE_DOMAIN: Optional[str] = None
 
     # CORS & Client
